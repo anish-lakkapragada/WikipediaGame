@@ -39,13 +39,13 @@ async function getHyperLinks(url: string): Promise<string[]> {
 // what if we recurse and see all the hyperlinks we can get in 2/3 connections? 
 async function traverseLinks(curUrl: string, links: Set<String>, depth: number, maxDepth: number) {
     if (depth >= maxDepth) {
-        return; 
+        return links; 
     }
 
     const hyperlinks = await getHyperLinks(curUrl); 
     // for each of these links recurse again 
     for (const hyperlink of hyperlinks) {
-        
+        links.add(hyperlink);
     }
 
     
