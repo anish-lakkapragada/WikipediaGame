@@ -7,8 +7,9 @@ app.get("/", async (req: Request, res : Response) => {
     res.send("dank");
 }); 
 
-app.get("/hyperlinks", (req: Request, res: Response) => {
-    getHyperLinks("http://books.toscrape.com/catalogue/libertarianism-for-beginners_982/index.html"); 
+app.get("/hyperlinks", async (req: Request, res: Response) => {
+    const links = await getHyperLinks("https://en.wikipedia.org/wiki/Peren%E2%80%93Clement_index"); 
+    console.log(links);
     res.send("nuttin"); 
 })
 
