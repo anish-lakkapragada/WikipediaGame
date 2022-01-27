@@ -1,16 +1,15 @@
 import express, {Application, Request, Response} from 'express';
-import { getHyperLinks } from './urls';
-
+import { explorePath, ExploreResponse } from './explorePath';
 const app : Application = express(); 
 
-app.get("/", async (req: Request, res : Response) => {
-    res.send("dank");
+app.get('/', async (req: Request, res : Response) => {
+	res.send('dank');
 }); 
+    
+app.get('/hyperlinks', async (req: Request, res: Response) => {
+	console.log('submitting');
+	const path: ExploreResponse = await explorePath('https://en.wikipedia.org/wiki/Country_risk', 50); 
+	res.send(path);
+});
 
-app.get("/hyperlinks", async (req: Request, res: Response) => {
-    const links = await getHyperLinks("https://en.wikipedia.org/wiki/Peren%E2%80%93Clement_index"); 
-    console.log(links);
-    res.send("nuttin"); 
-})
-
-app.listen(5000, () => {console.log("server running")});
+app.listen(5000, () => {console.log('server running');});
