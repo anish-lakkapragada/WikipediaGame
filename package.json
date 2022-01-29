@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node build/app.js",
     "dev": "nodemon src/app.ts && rollup -c -w",
-    "build": "tsc -p . && rollup -c"
+    "build": "tsc -p .", 
+    "build frontend": "rollup -c -w"
   },
   "keywords": [],
   "author": "",
