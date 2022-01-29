@@ -7,7 +7,10 @@ const app : Application = express();
 app.get('/', async (req: Request, res : Response) => {
 	res.send('dank');
 }); 
-    
+
+/*
+ Don't actually call this. 
+*/
 app.get('/hyperlinks', async (req: Request, res: Response) => {
 	console.log('submitting');
 	const path: ExploreResponse = await explorePath('https://en.wikipedia.org/wiki/Country_risk', 50); 

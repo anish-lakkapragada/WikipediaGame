@@ -23,7 +23,7 @@ function isWikipediaTopic(hyperlink: string): boolean {
 		return false; 
 	}
     
-	if (!url.startsWith('https:/en.wikipedia.org/wiki/')) {
+	if (!url.startsWith('https:/en.wikipedia.org/wiki/') && !url.startsWith('https://en.wikipedia.org/wiki/')) {
 		console.log('FALSE: ' + url);
 		return false; 
 	}
