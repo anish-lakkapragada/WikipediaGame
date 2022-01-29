@@ -3,14 +3,14 @@
  */
 
 import cheerio from 'cheerio'; 
-import path from 'path'; 
-import {sleep, isWikipediaTopic, getHTML} from './utils';
+import {sleep, isWikipediaTopic, getHTML, edit} from './utils';
 
 // get the valid string 
-export async function getHyperLinks(url: string): Promise<string[]> {
+export async function getHyperLinks(url, sleepTime = 1000): Promise<string[]> {
+
 	let html; 
 	
-	await sleep(500); 
+	await sleep(sleepTime); 
 
 	try {
 		html = await getHTML(url);
@@ -28,9 +28,9 @@ export async function getHyperLinks(url: string): Promise<string[]> {
 	hyperlinks.each((i, link) => {
 		const {href} = link.attribs; 
 		if (href != null) {
-			console.log('HREF: ' + href);
-			const urlink = path.join('https:/en.wikipedia.org', href);
+			const urlink = edit(href);
 			if (isWikipediaTopic(urlink)) {
+				console.log('URLINK : ' + urlink);
 				links.push(urlink); 
 			}
 		}

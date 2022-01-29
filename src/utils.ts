@@ -18,12 +18,13 @@ async function getHTML(url: string) {
 
 function isWikipediaTopic(hyperlink: string): boolean {
 	const url = edit(hyperlink);
-	console.log(url);
 	if (url == null) {
+		console.log('NELL FALSE: ' + url);
 		return false; 
 	}
     
 	if (!url.startsWith('https:/en.wikipedia.org/wiki/')) {
+		console.log('FALSE: ' + url);
 		return false; 
 	}
 
@@ -44,4 +45,4 @@ function isWikipediaTopic(hyperlink: string): boolean {
 
 const sleep = (ms : number) => new Promise(resolve => setTimeout(resolve, ms));
 
-export {isWikipediaTopic, getHTML, sleep};
+export {isWikipediaTopic, getHTML, sleep, edit};
