@@ -5,6 +5,12 @@
 import cheerio from 'cheerio'; 
 import {sleep, isWikipediaTopic, getHTML, edit} from './utils';
 
+
+interface AttributeElement {
+	attribs: {
+		href: string
+	}
+}
 // get the valid string 
 export async function getHyperLinks(url, sleepTime = 1000): Promise<string[]> {
 
@@ -25,8 +31,8 @@ export async function getHyperLinks(url, sleepTime = 1000): Promise<string[]> {
 
 	const hyperlinks = $('a'); 
 	const links: string[] = []; // get all the links 
-	hyperlinks.each((i, link) => {
-		const {href} = link.attribs; 
+	hyperlinks.each((i, elem) => {
+		const href = $(elem).attr('href');
 		if (href != null) {
 			const urlink = edit(href);
 			if (isWikipediaTopic(urlink)) {
