@@ -19,7 +19,8 @@ app.get('/hyperlinks', async (req: Request, res: Response) => {
 
 app.get('/move', async (req, res) => {
 	console.log(req.query.url);
-	if (req.query && req.query.url && isWikipediaTopic(req.query.url as string)) {
+	const isTopic = await isWikipediaTopic(req.query.url as string);
+	if (req.query && req.query.url && isTopic) {
 		const links: string[] = await getHyperLinks(req.query.url);
 		res.send(links);
 		return;
