@@ -5,7 +5,8 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import json from '@rollup/plugin-json';
-const smelte = require('smelte/rollup-plugin-smelte');
+//const smelte = require('smelte/rollup-plugin-smelte');
+import smelte from "smelte/rollup-plugin-smelte";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -19,7 +20,7 @@ function serve() {
 	return {
 		writeBundle() {
 			if (server) return;
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+			server = require('child_process').spawn('npm', ['run', 'frontstart', '--', '--dev'], {
 				stdio: ['ignore', 'inherit', 'inherit'],
 				shell: true
 			});
@@ -31,12 +32,12 @@ function serve() {
 }
 
 export default {
-	input: 'src/main.js',
+	input: 'website/src/main.js',
 	output: {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		file: 'website/public/build/bundle.js'
 	},
 	plugins: [
 		json(),
@@ -48,7 +49,7 @@ export default {
 		}),
 		smelte({
 			purge: production,
-			output: 'public/global.css', // it defaults to static/global.css which is probably what you expect in Sapper
+			output: 'website/public/global.css', // it defaults to static/global.css which is probably what you expect in Sapper
 			postcss: [], // Your PostCSS plugins
 			whitelist: [], // Array of classnames whitelisted from purging
 			whitelistPatterns: [], // Same as above, but list of regexes
@@ -94,7 +95,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload('website/public'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify

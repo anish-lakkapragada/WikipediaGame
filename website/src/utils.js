@@ -26,8 +26,6 @@ export async function isWikipediaTopic(hyperlink) {
 		return false; 
 	}
 
-	const headers = new Headers(); 
-	headers.append('Access-Control-Allow-Origin', '*');
 	const resp = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${hyperlink}&format=json&origin=*`);
 	const data = await resp.json(); 
 	if (data.query.pages[-1] != undefined) {

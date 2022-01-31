@@ -16,16 +16,10 @@ async function getHTML(url: string) {
 	return html;
 }
 
-async function isWikipediaTopic(hyperlink: string): Promise<boolean> {
+function isWikipediaTopic(hyperlink: string): boolean {
 	const url = edit(hyperlink);
 	if (url == null) {
 		console.log('NELL FALSE: ' + url);
-		return false; 
-	}
-
-	const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${hyperlink}`);
-	const data = await response.json();
-	if (data.query.pages[-1] != undefined) {
 		return false; 
 	}
     

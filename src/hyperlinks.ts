@@ -31,11 +31,11 @@ export async function getHyperLinks(url, sleepTime = 1000): Promise<string[]> {
 
 	const hyperlinks = $('a'); 
 	const links: string[] = []; // get all the links 
-	hyperlinks.each(async (i, elem) => {
+	hyperlinks.each((i, elem) => {
 		const href = $(elem).attr('href');
 		if (href != null) {
 			const urlink = edit(href);
-			const isTopic = await isWikipediaTopic(urlink);
+			const isTopic = isWikipediaTopic(urlink);
 			if (isTopic) {
 				console.log('URLINK : ' + urlink);
 				links.push(urlink); 

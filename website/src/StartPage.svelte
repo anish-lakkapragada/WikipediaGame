@@ -1,40 +1,27 @@
 <script lang="ts"> 
     import "smelte/src/tailwind.css" ;
-    import {TextField, Slider} from "smelte";
+    //import {TextField, Slider} from "smelte";
+    import {TextField} from "sozai";
     import {isWikipediaTopic} from "./utils.js";
     import {createEventDispatcher} from "svelte";
     const dispatcher = createEventDispatcher(); 
     let success = false; 
     let numTries = 10; 
 
-    let startColor = "primary"; 
+    let startColor; 
+
+    let tf = null; 
 
     let topicStart = null;
     let topicEnd = null;
-    const isValid = (topic, color) => {
-
-        if (topic == null) {
-            startColor = "primary";
-            return;
+    const isValid = async (topic, isStart, garb) => { 
+        if (isStart) {
+            startColor = "error"; 
         }
-
-        const isTopic = isWikipediaTopic(topic);
-        if (isTopic) {
-            startColor = "success"; 
-            return;
-        }
-
-        startColor = "error";
-        console.log(startColor);
     }
 
-    async function checkityCheck() {
-        const x = await isWikipediaTopic("Caldwaculus");
-        console.log(x);
-        console.log("dwada");
-    }
+    $: if (topicStart != null) {isValid(topicStart, true, startColor)}; 
 
-    checkityCheck();
 
 </script> 
 
@@ -44,9 +31,8 @@
         <p class="text-2xl "> In the wikipedia game, you try to go from one article to another only using the hyperlinks on the page, as fast as you can. </p>
 
         <h2 class="text-xl"> Enter First Topic </h2>
-        <TextField class=" " on:blur={() => {isValid(topicStart, startColor)}} color={startColor} bind:value={topicStart} label="Starting Topic"  />  
+        <TextField class=" " filled on:blur={() => {isValid(topicStart, true)}} bind:color={startColor} bind:value={topicStart} label="Starting Topic"  />  
         <TextField class="w-2" bind:value={topicEnd} label="Ending Topic" color="primary" />
-        <Slider label={`Number of Moves: ${numTries}`} min="1" max="50" bind:value={numTries} color="secondary"/> 
     </div>
 </html>
 
