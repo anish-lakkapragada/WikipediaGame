@@ -18,15 +18,29 @@ async function getHTML(url) {
 	return html;
 }
 
-export async function isWikipediaTopic(hyperlink) {
-	const url = edit(hyperlink);
+//const apiEndpoint = "https://wiki-connection.herokuapp.com/"; 
+const apiEndpoint = "localhost:3000/";
+export async function moveTopic(topic) {
+	if (!isWikipediaTopic(topic)) {
+		return []; // should never happen 
+	}
+
+	const url = edit(topic); 
+	const response = await fetch(apiEndpoint + "move?url=" + url, {headers: {'Access-Control-Allow-Origin': '*'}});
+	console.log(response);
+	const hyperlinks = await response.json();
+	console.log(hyperlinks);
+}
+
+export async function isWikipediaTopic(topic) {
+	const url = edit(topic);
 
 	if (url == null) {
 		console.log('NELL FALSE: ' + url);
 		return false; 
 	}
 
-	const resp = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${hyperlink}&format=json&origin=*`);
+	const resp = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${topic}&format=json&origin=*`);
 	const data = await resp.json(); 
 	if (data.query.pages[-1] != undefined) {
 		return false; 
