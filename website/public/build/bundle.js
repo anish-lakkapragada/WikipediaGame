@@ -5998,8 +5998,7 @@ var app = (function () {
     	return hyperlink;
     }
 
-    //const apiEndpoint = "https://wiki-connection.herokuapp.com/"; 
-    const apiEndpoint = "localhost:3000/";
+    const apiEndpoint = "https://wiki-connection.herokuapp.com/"; 
     async function moveTopic(topic) {
     	if (!isWikipediaTopic(topic)) {
     		return []; // should never happen 

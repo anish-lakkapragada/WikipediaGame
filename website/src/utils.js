@@ -18,8 +18,7 @@ async function getHTML(url) {
 	return html;
 }
 
-//const apiEndpoint = "https://wiki-connection.herokuapp.com/"; 
-const apiEndpoint = "localhost:3000/";
+const apiEndpoint = "https://wiki-connection.herokuapp.com/"; 
 export async function moveTopic(topic) {
 	if (!isWikipediaTopic(topic)) {
 		return []; // should never happen 
