@@ -6005,7 +6005,7 @@ var app = (function () {
     	}
 
     	const url = edit(topic); 
-    	const response = await fetch(apiEndpoint + "move?url=" + url, {headers: {'Access-Control-Allow-Origin': '*'}});
+    	const response = await fetch(apiEndpoint + "move?url=" + url, {mode: "cors", headers: {'Access-Control-Allow-Origin': '*'}});
     	console.log(response);
     	const hyperlinks = await response.json();
     	console.log(hyperlinks);
