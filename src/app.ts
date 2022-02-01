@@ -6,7 +6,7 @@ import cors from 'cors';
 const app : Application = express(); 
 
 app.use(cors({
-    origin: ['*']
+    origin: '*'
 }));
 
 app.get('/', async (req: Request, res : Response) => {
