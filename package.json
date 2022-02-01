@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc -p .",
+    "build": "npx tsc -p .",
     "build frontend": "rollup -c",
     "frontstart": "sirv website/public",
     "start": "node build/app.js",
@@ -14,6 +14,7 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "node-fetch": "^2.6.7",
+    "nodemon": "^2.0.15",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -30,10 +31,9 @@
     "@types/node-fetch": "^3.0.3",
     "cors": "^2.8.5",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15",
+    "npx": "^10.2.2",
     "sirv-cli": "^2.0.0",
     "smelte": "^1.1.8",
-    "sozai": "^0.6.0",
-    "tsc": "^2.0.4"
+    "sozai": "^0.6.0"
   }
 }
