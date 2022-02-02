@@ -28,7 +28,8 @@ export async function moveTopic(topic) {
 	const response = await fetch(apiEndpoint + "move?url=" + url, {mode: "cors", headers: {'Access-Control-Allow-Origin': '*'}});
 	console.log(response);
 	const hyperlinks = await response.json();
-	console.log(hyperlinks);
+
+	return hyperlinks; 
 }
 
 export async function isWikipediaTopic(topic) {

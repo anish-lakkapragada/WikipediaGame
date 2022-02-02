@@ -2,7 +2,7 @@
 <script>
 	import "smelte/src/tailwind.css" ;
 	import StartPage from "./StartPage.svelte";
-	import {moveTopic} from "./utils";
+	import {moveTopic, getThumbnail} from "./utils";
 	import {Card} from "smelte";
 
 	let hasStarted = true; // todo change this 
@@ -17,7 +17,13 @@
 		hasStarted = true; 
 	}
 
-	moveTopic("Calculus");
+	async function fun() {
+		const hyperlinks = await moveTopic(currentTopic); 
+		console.log(hyperlinks.length); 
+		await getThumbnail(currentTopic);
+	}
+
+	fun(); 
 
 </script>
 
