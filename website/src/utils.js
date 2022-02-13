@@ -27,9 +27,17 @@ export async function moveTopic(topic) {
 	const url = edit(topic); 
 	const response = await fetch(apiEndpoint + "move?url=" + url, {mode: "cors", headers: {'Access-Control-Allow-Origin': '*'}});
 	console.log(response);
-	const hyperlinks = await response.json();
+	const hyperlinks = Array.from(await response.json());
+	const topics = []; 
+	for (const hyperlink of hyperlinks) {
+		const topic = hyperlink.slice(hyperlink.lastIndexOf('/') + 1);
+		topics.push({"topic": topic, url: hyperlink}); 
+	}
 
-	return hyperlinks; 
+	console.log('thesse topics'); 
+	console.log(topics);
+		
+	return topics; 
 }
 
 export async function isWikipediaTopic(topic) {

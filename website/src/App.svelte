@@ -1,29 +1,48 @@
 
 <script>
 	import "smelte/src/tailwind.css" ;
+	
+	//import VirtualList from '@sveltejs/svelte-virtual-list';
+	//import VirtualScroll from "svelte-virtual-scroll-list"
+	import VirtualList from 'svelte-tiny-virtual-list';
+
 	import StartPage from "./StartPage.svelte";
-	import {moveTopic, getThumbnail} from "./utils";
-	import {Card} from "smelte";
+	import Choice from "./Choice.svelte";
+	import {moveTopic} from "./utils";
+	import "std:virtual-scroller";
 
 	let hasStarted = true; // todo change this 
 	let movesLeft = 10; 
 	let currentTopic = "Calculus"; 
-	let endTopic = "Algebra"; 
+	let endTopic= "Mathematics";
+	let items = []; 
+	let gotChoices = true; 
+
 	const handleEvent = (event) => {
 		const detail = event.detail; 
 		movesLeft = detail.moves; 
-		currentTopic = detail.topicStart; 
-		endTopic = detail.topicEnd;
+		currentTopic = detail.startTopic; 
+		endTopic = detail.endTopic;
 		hasStarted = true; 
+		gotChoices = true; 
+	}	
+
+	let curHyperlinks = []; 
+
+	async function updateChoices() {
+		items = [...items, ...await moveTopic(currentTopic)];
+		console.log(items);
+	}	
+
+	if (hasStarted) {
+		updateChoices(); 
 	}
 
-	async function fun() {
-		const hyperlinks = await moveTopic(currentTopic); 
-		console.log(hyperlinks.length); 
-		await getThumbnail(currentTopic);
+	if (gotChoices) {
+		for (const item of items) {
+			console.log(item.topic);
+		}
 	}
-
-	fun(); 
 
 </script>
 
@@ -39,9 +58,15 @@
 		<span class="text-3xl"> {currentTopic} <span class="material-icons text-8xl"> arrow_right_alt </span> {endTopic} </span>
 	</div>
 
-	<Card.Title
-			title="The three little kittens"
-			subheader="A kitten poem"
-			avatar="https://placekitten.com/64/64"
-	/>
+	{#if gotChoices}
+		<VirtualList
+		width="100%"
+		height={600}
+		itemCount={items.length}
+		itemSize={50}>
+			<div slot="item" let:index let:style {style}>
+				<Choice topic={items[index].topic}/>
+		  </div>
+		</VirtualList>
+	{/if}
 {/if}

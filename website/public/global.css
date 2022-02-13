@@ -188283,6 +188283,18 @@ tr.selected {
   }
 }
 
+.virtual-list-wrapper.svelte-1he1ex4{
+  overflow:auto;
+  will-change:transform;
+  -webkit-overflow-scrolling:touch
+}
+
+.virtual-list-inner.svelte-1he1ex4{
+  position:relative;
+  display:flex;
+  width:100%;
+  min-height:100%
+}
 .reverse.svelte-zzky5a{
   -webkit-transform:rotate(180deg);
   -ms-transform:rotate(180deg);
