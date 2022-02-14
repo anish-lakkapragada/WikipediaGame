@@ -29,14 +29,18 @@ export async function moveTopic(topic) {
 	console.log(response);
 	const hyperlinks = Array.from(await response.json());
 	const topics = []; 
+	const existingTopics = []; 
 	for (const hyperlink of hyperlinks) {
 		const topic = hyperlink.slice(hyperlink.lastIndexOf('/') + 1);
+		if (existingTopics.includes(topic)) {continue;}
+		if (topic.includes("disambiguation")) {continue;}
+		existingTopics.push(topic);
 		topics.push({"topic": topic, url: hyperlink}); 
 	}
 
 	console.log('thesse topics'); 
 	console.log(topics);
-		
+
 	return topics; 
 }
 
@@ -72,5 +76,31 @@ export async function isWikipediaTopic(topic) {
 	}    
 
 	return true;
+}
+
+export async function getInfo(topic) {
+	const wikiLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png";
+
+	// returns the description and image (if possible)
+	const resp = await fetch("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&exsentences=1&explaintext&titles=" + topic + "&origin=*"); 
+	const data = await resp.json();
+	const title = data.query.pages[Object.keys(data.query.pages)[0]].title; 
+	if (title == undefined) {title = topic;}
+
+	if (data.query.pages[-1] != undefined) {
+		return {title: title, description: null, image: wikiLogoUrl};
+	}
+
+	let description = data.query.pages[Object.keys(data.query.pages)[0]].extract;
+	if (description.length > 200) {
+		description = description.slice(0, 200) + '...';
+	}
+
+	// get the thumbnail 
+	const imageResponse = await fetch("https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=100&titles=" + topic + "&origin=*");
+	const imageData = await imageResponse.json();
+	const image = imageData.query.pages[Object.keys(imageData.query.pages)[0]]?.thumbnail?.source ||  wikiLogoUrl;
+
+	return {title: title, description: description, image: image};
 }
 
