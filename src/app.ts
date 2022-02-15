@@ -29,7 +29,7 @@ app.get('/move', async (req, res) => {
 	console.log(req.query.url);
 	const isTopic = await isWikipediaTopic(req.query.url as string);
 	if (req.query && req.query.url && isTopic) {
-		const links: string[] = await getHyperLinks(req.query.url);
+		const links: any = await getHyperLinks(req.query.url);
 		res.send(links);
 		return;
 	}

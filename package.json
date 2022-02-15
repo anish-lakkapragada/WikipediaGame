@@ -39,6 +39,7 @@
     "sirv-cli": "^2.0.0",
     "smelte": "^1.1.8",
     "sozai": "^0.6.0",
-    "svelte-tiny-virtual-list": "^1.1.7"
+    "svelte-tiny-virtual-list": "^1.1.7",
+    "url-encode-decode": "^1.0.0"
   }
 }

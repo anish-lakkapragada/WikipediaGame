@@ -1,3 +1,5 @@
+import {decode} from "url-encode-decode";
+
 function edit(hyperlink) {
 	if (hyperlink.startsWith('/wiki/')) {
 		return 'https:/en.wikipedia.org' + hyperlink;
@@ -35,9 +37,9 @@ export async function moveTopic(topic) {
 		if (existingTopics.includes(topic)) {continue;}
 		if (topic.includes("disambiguation")) {continue;}
 		existingTopics.push(topic);
-		topics.push({"topic": topic, url: hyperlink}); 
+		topics.push({"topic": topic, url : hyperlink}); 
 	}
-
+4
 	console.log('thesse topics'); 
 	console.log(topics);
 
@@ -94,6 +96,10 @@ export async function getInfo(topic) {
 	let description = data.query.pages[Object.keys(data.query.pages)[0]].extract;
 	if (description.length > 200) {
 		description = description.slice(0, 200) + '...';
+	}
+	
+	else if (description.length <= 1) {
+		description = "No description available.";
 	}
 
 	// get the thumbnail 
