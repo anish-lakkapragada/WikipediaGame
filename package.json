@@ -13,6 +13,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "eslint": "^8.9.0",
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15",
     "rollup": "^2.3.4",
@@ -21,6 +22,7 @@
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
     "svelte": "^3.0.0",
+    "svelte-hamburgers": "^3.0.1",
     "svelte-virtual-scroll-list": "^1.0.8",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5"

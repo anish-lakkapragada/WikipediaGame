@@ -1,5 +1,3 @@
-import {decode} from "url-encode-decode";
-
 function edit(hyperlink) {
 	if (hyperlink.startsWith('/wiki/')) {
 		return 'https:/en.wikipedia.org' + hyperlink;
@@ -11,23 +9,14 @@ function edit(hyperlink) {
 
 	return hyperlink;
 }
-
-
-// get the HTML in any page 
-async function getHTML(url) {
-	const resp = await fetch(url);
-	const html = await resp.text();
-	return html;
-}
-
-const apiEndpoint = "https://wiki-connection.herokuapp.com/"; 
+const apiEndpoint = 'https://wiki-connection.herokuapp.com/'; 
 export async function moveTopic(topic) {
 	if (!isWikipediaTopic(topic)) {
 		return []; // should never happen 
 	}
 
 	const url = edit(topic); 
-	const response = await fetch(apiEndpoint + "move?url=" + url, {mode: "cors", headers: {'Access-Control-Allow-Origin': '*'}});
+	const response = await fetch(apiEndpoint + 'move?url=' + url, {mode: 'cors', headers: {'Access-Control-Allow-Origin': '*'}});
 	console.log(response);
 	const hyperlinks = Array.from(await response.json());
 	const topics = []; 
@@ -35,11 +24,11 @@ export async function moveTopic(topic) {
 	for (const hyperlink of hyperlinks) {
 		const topic = hyperlink.slice(hyperlink.lastIndexOf('/') + 1);
 		if (existingTopics.includes(topic)) {continue;}
-		if (topic.includes("disambiguation")) {continue;}
+		if (topic.includes('disambiguation')) {continue;}
 		existingTopics.push(topic);
-		topics.push({"topic": topic, url : hyperlink}); 
+		topics.push({'topic': topic, url : hyperlink}); 
 	}
-4
+	
 	console.log('thesse topics'); 
 	console.log(topics);
 
@@ -81,12 +70,12 @@ export async function isWikipediaTopic(topic) {
 }
 
 export async function getInfo(topic) {
-	const wikiLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png";
+	const wikiLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png';
 
 	// returns the description and image (if possible)
-	const resp = await fetch("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&exsentences=1&explaintext&titles=" + topic + "&origin=*"); 
+	const resp = await fetch('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&exsentences=1&explaintext&titles=' + topic + '&origin=*'); 
 	const data = await resp.json();
-	const title = data.query.pages[Object.keys(data.query.pages)[0]].title; 
+	let title = data.query.pages[Object.keys(data.query.pages)[0]].title; 
 	if (title == undefined) {title = topic;}
 
 	if (data.query.pages[-1] != undefined) {
@@ -99,11 +88,11 @@ export async function getInfo(topic) {
 	}
 	
 	else if (description.length <= 1) {
-		description = "No description available.";
+		description = 'No description available.';
 	}
 
 	// get the thumbnail 
-	const imageResponse = await fetch("https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=100&titles=" + topic + "&origin=*");
+	const imageResponse = await fetch('https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=100&titles=' + topic + '&origin=*');
 	const imageData = await imageResponse.json();
 	const image = imageData.query.pages[Object.keys(imageData.query.pages)[0]]?.thumbnail?.source ||  wikiLogoUrl;
 

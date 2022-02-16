@@ -8,6 +8,8 @@
 	import {moveTopic, getInfo} from "./utils";
 	import { ProgressCircular, ProgressLinear } from "smelte";
 	import {TextField} from "smelte"; 
+	import {AppBar} from "smelte";
+	import Hamburger from 'svelte-hamburgers';
 
 	let hasStarted = true; // todo change this 
 	let movesLeft = 10; 
@@ -24,7 +26,7 @@
 		currentTopic = detail.startTopic; 
 		endTopic = detail.endTopic;
 		hasStarted = true; 
-		gotChoices = true; 
+		gotChoices = false; 
 	}	
 
 	async function infoify() {
@@ -94,14 +96,18 @@
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-hamburgers@3/dist/css/base.css" />
+
+<AppBar class="h-22 mb-3 flex"> 
+		<Hamburger class="float-left text-5xl "></Hamburger>
+		<h3 class="text-center text-3xl"> Wikipedia Game </h3>
+</AppBar>
 
 {#if !hasStarted} 
 	<StartPage on:start={handleEvent}/> 
-{/if}
 
-{#if hasStarted}
+{:else}
 	<div class="font-sans text-center"> 
-		<h1 class="text-center text-3xl"> Wikipedia Game (By yourself!) </h1>
 		<span class="text-2xl"> {currentTopic} <span class="material-icons text-8xl"> arrow_right_alt </span> {endTopic} </span>
 	</div>
 
@@ -145,12 +151,8 @@
 		<br>
 	</div>
 
-	{#if gotChoices} 
-		<div class="mx-60 font-sans">
-			<TextField label="Search Topic" on:blur={scrollToTopic} bind:value={searchTopic} hint={"Search a topic to see if it is on this page."} persistentHint/>
-		</div>
-	{:else}
-		<br><br>
-	{/if}
+	<div class="mx-60 font-sans">
+			<TextField disabled={!gotChoices} label="Search Topic" on:blur={scrollToTopic} bind:value={searchTopic} hint={"Search a topic to see if it is on this page."} persistentHint/>
+	</div>
 	<h1 class="font-sans text-3xl text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
 {/if}
