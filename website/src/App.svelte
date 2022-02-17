@@ -10,6 +10,7 @@
 	import {TextField} from "smelte"; 
 	import {AppBar} from "smelte";
 	import Hamburger from 'svelte-hamburgers';
+	import Circle from "./Circle.svelte";
 
 	let hasStarted = true; // todo change this 
 	let movesLeft = 10; 
@@ -98,9 +99,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-hamburgers@3/dist/css/base.css" />
 
-<AppBar class="h-22 mb-3 flex"> 
-		<Hamburger class="float-left text-5xl "></Hamburger>
-		<h3 class="text-center text-3xl"> Wikipedia Game </h3>
+<AppBar class="flex items-center"> 
+	<Hamburger class="absolute text-4xl"></Hamburger>
+	<h3 class="flex items-center font-sans justify-center w-full"> Wikipedia Game </h3>
 </AppBar>
 
 {#if !hasStarted} 
@@ -138,8 +139,7 @@
 				<br>
 			{/each}
 
-			<h1 class="text-center font-sans text-4xl"> Loading... </h1>
-			
+
 			{#each createArray(numBrs/2) as i} 
 				<br>
 			{/each}
