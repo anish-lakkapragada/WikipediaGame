@@ -101,14 +101,17 @@
 
 <AppBar class="flex items-center"> 
 	<Hamburger class="absolute text-4xl"></Hamburger>
-	<h3 class="flex items-center font-sans justify-center w-full"> Wikipedia Game </h3>
+	<h3 class="flex items-center font-sans justify-center text-3xl w-full"> Wikipedia Game </h3>
+	<a class="float-right mr-5" href="https://github.com/anish-lakkapragada">
+		<img alt="Github Logo" src="https://smeltejs.com/github.png" class="w-12">
+	</a>
 </AppBar>
 
 {#if !hasStarted} 
 	<StartPage on:start={handleEvent}/> 
 
 {:else}
-	<div class="font-sans text-center"> 
+	<div class="font-sans mt-2 text-center"> 
 		<span class="text-2xl"> {currentTopic} <span class="material-icons text-8xl"> arrow_right_alt </span> {endTopic} </span>
 	</div>
 
@@ -152,7 +155,8 @@
 	</div>
 
 	<div class="mx-60 font-sans">
-			<TextField disabled={!gotChoices} label="Search Topic" on:blur={scrollToTopic} bind:value={searchTopic} hint={"Search a topic to see if it is on this page."} persistentHint/>
+			<TextField disabled={!gotChoices} label="Search Topic" on:blur={scrollToTopic} bind:value={searchTopic}/>	
+			<pre class="text-center mt-0 font-sans text-1xl"> Enter Which Topic You Want to Go To</pre>
 	</div>
 	<h1 class="font-sans text-3xl text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
 {/if}
