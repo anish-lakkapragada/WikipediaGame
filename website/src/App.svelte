@@ -6,11 +6,10 @@
 	import StartPage from "./StartPage.svelte";
 	import Choice from "./Choice.svelte";
 	import {moveTopic, getInfo} from "./utils";
-	import { ProgressCircular, ProgressLinear } from "smelte";
+	import Overlay from 'svelte-overlay';
+	import {ProgressLinear } from "smelte";
 	import {TextField} from "smelte"; 
 	import {AppBar} from "smelte";
-	import Hamburger from 'svelte-hamburgers';
-	import Circle from "./Circle.svelte";
 
 	let hasStarted = true; // todo change this 
 	let movesLeft = 10; 
@@ -18,9 +17,9 @@
 	let endTopic= "Calculus";
 	let items = []; 
 	let gotChoices = false; 
-	let searchTopic; let scrollIndex; 
+	let searchTopic; let scrollIndex;
+	let forceRerender = true;  
 	const numBrs = 22; 
-
 	const handleEvent = (event) => {
 		const detail = event.detail; 
 		movesLeft = detail.moves; 
@@ -92,6 +91,14 @@
 		return arr; 
 	}
 
+	const reset = async () => {
+		hasStarted = false;
+		gotChoices = false; 
+		currentTopic = null; 
+		endTopic = null; 
+		movesLeft = 10; 
+	}
+
 </script>
 
 
@@ -100,7 +107,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-hamburgers@3/dist/css/base.css" />
 
 <AppBar class="flex items-center"> 
-	<Hamburger class="absolute text-4xl"></Hamburger>
+	{#if hasStarted}
+		<button class="ml-5" on:click={reset}> 
+			<span class="material-icons"> arrow_back </span>
+		</button>
+	{/if}
+
 	<h3 class="flex items-center font-sans justify-center text-3xl w-full"> Wikipedia Game </h3>
 	<a class="float-right mr-5" href="https://github.com/anish-lakkapragada">
 		<img alt="Github Logo" src="https://smeltejs.com/github.png" class="w-12">
@@ -109,8 +121,8 @@
 
 {#if !hasStarted} 
 	<StartPage on:start={handleEvent}/> 
-
-{:else}
+{/if}
+{#if hasStarted}
 	<div class="font-sans mt-2 text-center"> 
 		<span class="text-2xl"> {currentTopic} <span class="material-icons text-8xl"> arrow_right_alt </span> {endTopic} </span>
 	</div>
@@ -133,7 +145,8 @@
 						description={items[index].description} title={items[index].title} on:move={movePosition}/>
 			</div>
 			</VirtualList>
-		{:else}
+		{/if}
+		{#if !gotChoices}
 			<div class="text-center">
 				<ProgressLinear color="primary"> </ProgressLinear>
 			</div>

@@ -1,0 +1,2 @@
+- first thing: 
+  - get the reactivity to work with clicking the hamburger, or use a different icon

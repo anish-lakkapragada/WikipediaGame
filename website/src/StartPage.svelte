@@ -88,8 +88,7 @@
 </script> 
 
 
-<div class="text-center font-sans mx-20"> 
-    <h1 class="text-6xl"> Wikipedia Game (By yourself!) </h1>
+<div class="text-center font-sans mx-20 mt-4"> 
     <p class="text-2xl "> In the wikipedia game, you try to go from one article to another only using the hyperlinks on the page, as fast as you can. </p>
 
     {#if startRender}
