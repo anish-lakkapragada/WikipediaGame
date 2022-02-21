@@ -7,7 +7,6 @@ import css from 'rollup-plugin-css-only';
 import json from '@rollup/plugin-json';
 //const smelte = require('smelte/rollup-plugin-smelte');
 import smelte from 'smelte/rollup-plugin-smelte';
-import purgecss from 'rollup-plugin-purgecss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -75,9 +74,10 @@ export default {
 				darkMode: true,
 			}, // Any other props will be applied on top of default Smelte tailwind.config.js
 		}),
-		purgecss({
-			content: ['index.html', 'website/src/**/*.svelte'],
-		}),
+		// we'll extract any component CSS out into
+		// a separate file - better for performance
+		css({ output: 'bundle.css' }),
+
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration -
