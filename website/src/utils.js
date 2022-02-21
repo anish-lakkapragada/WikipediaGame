@@ -45,7 +45,7 @@ export async function isWikipediaTopic(topic) {
 
 	const resp = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${topic}&format=json&origin=*`);
 	const data = await resp.json(); 
-	if (data.query.pages[-1] != undefined) {
+	if (data.query?.pages[-1] != undefined) {
 		return false; 
 	}
 
@@ -73,9 +73,9 @@ export async function getInfo(topic) {
 	const wikiLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png';
 
 	// returns the description and image (if possible)
-	const resp = await fetch('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&exsentences=1&explaintext&titles=' + topic + '&origin=*'); 
+	const resp = await fetch('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts|pageimages&exintro&exsentences=1&explaintext&titles=' + topic + '&origin=*'); 
 	const data = await resp.json();
-	let title = data.query.pages[Object.keys(data.query.pages)[0]].title; 
+	let title = data.query?.pages[Object.keys(data.query?.pages)[0]].title; 
 	if (title == undefined) {title = topic;}
 
 	if (data.query.pages[-1] != undefined) {
@@ -91,10 +91,7 @@ export async function getInfo(topic) {
 		description = 'No description available.';
 	}
 
-	// get the thumbnail 
-	const imageResponse = await fetch('https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=100&titles=' + topic + '&origin=*');
-	const imageData = await imageResponse.json();
-	const image = imageData.query.pages[Object.keys(imageData.query.pages)[0]]?.thumbnail?.source ||  wikiLogoUrl;
+	const image = data.query.pages[Object.keys(data.query.pages)[0]]?.thumbnail?.source ||  wikiLogoUrl;
 
 	return {title: title, description: description, image: image};
 }

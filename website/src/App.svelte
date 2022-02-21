@@ -7,18 +7,17 @@
 	import Choice from "./Choice.svelte";
 	import End from "./End.svelte"; 
 	import {moveTopic, getInfo} from "./utils";
-	import Overlay from 'svelte-overlay';
 	import {ProgressLinear } from "smelte";
 	import {TextField} from "smelte"; 
 	import {AppBar} from "smelte";
 
 	// fix all these settings after
-	let hasStarted = true;
-	let movesLeft = 0; 
-	let numMoves = 0; 
-	let currentTopic = "Sports"; 
-	let startTopic = "Sports";
-	let endTopic= "Calculus";
+	let hasStarted = false;
+	let movesLeft; 
+	let numMoves = movesLeft; 
+	let currentTopic = null; 
+	let startTopic = null;
+	let endTopic= null;
 	let items = []; 
 	let gotChoices = false; 
 	let searchTopic; let scrollIndex;
@@ -31,16 +30,15 @@
 		currentTopic = detail.startTopic; 
 		startTopic = currentTopic; 
 		endTopic = detail.endTopic;
+		hasStarted = false; // wake up call
 		hasStarted = true; 
 		gotChoices = false; 
 	}	
 
-	const retry = (e) => {
-		hasStarted = false; 
-		gotChoices = false;
-	}
 
 	async function infoify() {
+		console.log(currentTopic); 
+		console.log("getting info");
 		const promises = []; 
 		for (let i = 0; i < items.length; i++) {
 			promises.push(new Promise((resolve) => {
@@ -75,9 +73,7 @@
 		}
 	}
 
-	if (hasStarted) {
-		updateChoices(); 
-	}
+	$: if (hasStarted) {updateChoices();}
 
 	if (gotChoices) {
 		for (const item of items) {
