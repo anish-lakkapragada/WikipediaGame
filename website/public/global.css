@@ -188306,9 +188306,6 @@ tr.selected {
   -ms-transform:rotate(90deg);
   transform:rotate(90deg)
 }
-#div.svelte-ob7mym{
-  width:100%
-}
 .p-1\/2.svelte-ixci48{
   padding:0.125rem
 }
@@ -188395,64 +188392,64 @@ aside.svelte-6qcjcu{
     width:10%
   }
 }
-.circular.svelte-1ruzsvx{
-  -webkit-animation:svelte-1ruzsvx-rotate 2s linear infinite;
-  animation:svelte-1ruzsvx-rotate 2s linear infinite;
+.circular.svelte-1xkiyez{
+  -webkit-animation:svelte-1xkiyez-rotate 2s linear infinite;
+  animation:svelte-1xkiyez-rotate 2s linear infinite;
   position:relative
 }
 
-.path.svelte-1ruzsvx{
-  stroke-dasharray:1, var(--size);
+.path.svelte-1xkiyez{
+  stroke-dasharray:1, 200;
   stroke-dashoffset:0;
   stroke-linecap:round;
-  -webkit-animation:svelte-1ruzsvx-dash 1.5s ease-in-out infinite;
-  animation:svelte-1ruzsvx-dash 1.5s ease-in-out infinite
+  -webkit-animation:svelte-1xkiyez-dash 1.5s ease-in-out infinite;
+  animation:svelte-1xkiyez-dash 1.5s ease-in-out infinite
 }
 
-@-webkit-keyframes svelte-1ruzsvx-rotate{
+@-webkit-keyframes svelte-1xkiyez-rotate{
   100%{
     -webkit-transform:rotate(360deg);
     transform:rotate(360deg)
   }
 }
 
-@keyframes svelte-1ruzsvx-rotate{
+@keyframes svelte-1xkiyez-rotate{
   100%{
     -webkit-transform:rotate(360deg);
     transform:rotate(360deg)
   }
 }
 
-@-webkit-keyframes svelte-1ruzsvx-dash{
+@-webkit-keyframes svelte-1xkiyez-dash{
   0%{
-    stroke-dasharray:1, var(--size);
+    stroke-dasharray:1, 200;
     stroke-dashoffset:0
   }
 
   50%{
-    stroke-dasharray:89, var(--size);
+    stroke-dasharray:89, 200;
     stroke-dashoffset:-35
   }
 
   100%{
-    stroke-dasharray:89, var(--size);
+    stroke-dasharray:89, 200;
     stroke-dashoffset:-124
   }
 }
 
-@keyframes svelte-1ruzsvx-dash{
+@keyframes svelte-1xkiyez-dash{
   0%{
-    stroke-dasharray:1, var(--size);
+    stroke-dasharray:1, 200;
     stroke-dashoffset:0
   }
 
   50%{
-    stroke-dasharray:89, var(--size);
+    stroke-dasharray:89, 200;
     stroke-dashoffset:-35
   }
 
   100%{
-    stroke-dasharray:89, var(--size);
+    stroke-dasharray:89, 200;
     stroke-dashoffset:-124
   }
 }
