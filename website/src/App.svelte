@@ -60,6 +60,7 @@
 		gotChoices = false;
 		await tick();  
 		gotChoices = true; 
+		console.log("got the data");
 		console.log(items);
 	}
 	

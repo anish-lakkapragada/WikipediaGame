@@ -78,20 +78,20 @@ export async function getInfo(topic) {
 	let title = data.query?.pages[Object.keys(data.query?.pages)[0]].title; 
 	if (title == undefined) {title = topic;}
 
-	if (data.query.pages[-1] != undefined) {
+	if (data.query?.pages[-1] != undefined) {
 		return {title: title, description: null, image: wikiLogoUrl};
 	}
 
-	let description = data.query.pages[Object.keys(data.query.pages)[0]].extract;
-	if (description.length > 200) {
+	let description = data.query?.pages[Object.keys(data.query?.pages)[0]].extract;
+	if (description?.length > 200) {
 		description = description.slice(0, 200) + '...';
 	}
 	
-	else if (description.length <= 1) {
+	else if (description?.length <= 1) {
 		description = 'No description available.';
 	}
 
-	const image = data.query.pages[Object.keys(data.query.pages)[0]]?.thumbnail?.source ||  wikiLogoUrl;
+	const image = data.query?.pages[Object.keys(data.query?.pages)[0]]?.thumbnail?.source ||  wikiLogoUrl;
 
 	return {title: title, description: description, image: image};
 }
