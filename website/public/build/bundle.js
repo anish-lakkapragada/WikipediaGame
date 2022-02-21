@@ -3846,7 +3846,6 @@ var app = (function () {
     	let t1;
     	let t2;
     	let t3;
-    	let div_class_value;
     	let current;
     	const title_slot_template = /*#slots*/ ctx[4].title;
     	const title_slot = create_slot(title_slot_template, ctx, /*$$scope*/ ctx[3], get_title_slot_context$1);
@@ -3871,9 +3870,8 @@ var app = (function () {
     			if (text_slot) text_slot.c();
     			t3 = space();
     			if (actions_slot) actions_slot.c();
-    			attr_dev(div, "id", "div");
-    			attr_dev(div, "class", div_class_value = "" + (null_to_empty(/*c*/ ctx[0]) + " svelte-ob7mym"));
-    			add_location(div, file$f, 19, 0, 441);
+    			attr_dev(div, "class", /*c*/ ctx[0]);
+    			add_location(div, file$f, 18, 0, 440);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3987,8 +3985,8 @@ var app = (function () {
     				}
     			}
 
-    			if (!current || dirty & /*c*/ 1 && div_class_value !== (div_class_value = "" + (null_to_empty(/*c*/ ctx[0]) + " svelte-ob7mym"))) {
-    				attr_dev(div, "class", div_class_value);
+    			if (!current || dirty & /*c*/ 1) {
+    				attr_dev(div, "class", /*c*/ ctx[0]);
     			}
     		},
     		i: function intro(local) {
@@ -7803,7 +7801,7 @@ var app = (function () {
     			header = element("header");
     			if (default_slot) default_slot.c();
     			attr_dev(header, "class", /*c*/ ctx[0]);
-    			add_location(header, file$6, 13, 0, 398);
+    			add_location(header, file$6, 16, 0, 307);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7867,7 +7865,7 @@ var app = (function () {
     	let c;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('AppBar', slots, ['default']);
-    	let classesDefault = "items-center shadow bg-primary-300 dark:bg-dark-600";
+    	let classesDefault = "items-center shadow bg-primary-300 dark:bg-dark-300";
     	let { classes = classesDefault } = $$props;
     	const cb = new ClassBuilder(classes, classesDefault);
 
@@ -8836,11 +8834,11 @@ var app = (function () {
     			t6 = space();
     			create_component(button.$$.fragment);
     			attr_dev(p, "class", "text-2xl ");
-    			add_location(p, file$3, 93, 4, 2259);
-    			add_location(br0, file$3, 104, 4, 2897);
-    			add_location(br1, file$3, 105, 4, 2907);
+    			add_location(p, file$3, 93, 4, 2260);
+    			add_location(br0, file$3, 104, 4, 2898);
+    			add_location(br1, file$3, 105, 4, 2908);
     			attr_dev(div, "class", "text-center font-sans mx-20 mt-4");
-    			add_location(div, file$3, 92, 0, 2207);
+    			add_location(div, file$3, 92, 0, 2208);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10024,7 +10022,7 @@ var app = (function () {
     	return block;
     }
 
-    // (129:0) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
+    // (130:0) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
     function create_if_block_4(ctx) {
     	let end;
     	let current;
@@ -10073,14 +10071,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(129:0) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}",
+    		source: "(130:0) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (134:0) {#if !hasStarted}
+    // (135:0) {#if !hasStarted}
     function create_if_block_3(ctx) {
     	let startpage;
     	let current;
@@ -10127,14 +10125,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(134:0) {#if !hasStarted}",
+    		source: "(135:0) {#if !hasStarted}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (137:0) {#if hasStarted}
+    // (138:0) {#if hasStarted}
     function create_if_block(ctx) {
     	let div0;
     	let span1;
@@ -10218,25 +10216,25 @@ var app = (function () {
     			t14 = text(/*movesLeft*/ ctx[1]);
     			t15 = text(" moves left!");
     			attr_dev(span0, "class", "material-icons text-8xl");
-    			add_location(span0, file, 138, 41, 3575);
+    			add_location(span0, file, 139, 41, 3576);
     			attr_dev(span1, "class", "text-2xl");
-    			add_location(span1, file, 138, 2, 3536);
+    			add_location(span1, file, 139, 2, 3537);
     			attr_dev(div0, "class", "font-sans text-center flex justify-center items-center w-full mt-2");
-    			add_location(div0, file, 137, 1, 3452);
-    			add_location(br0, file, 142, 2, 3698);
+    			add_location(div0, file, 138, 1, 3453);
+    			add_location(br0, file, 143, 2, 3699);
     			attr_dev(div1, "class", "border-b-2 border-black");
-    			add_location(div1, file, 143, 2, 3706);
+    			add_location(div1, file, 144, 2, 3707);
     			attr_dev(div2, "class", "border-t-2 border-black");
-    			add_location(div2, file, 176, 2, 4513);
-    			add_location(br1, file, 177, 2, 4560);
+    			add_location(div2, file, 177, 2, 4514);
+    			add_location(br1, file, 178, 2, 4561);
     			attr_dev(div3, "class", "mx-10 -mt-3.5");
-    			add_location(div3, file, 141, 1, 3667);
+    			add_location(div3, file, 142, 1, 3668);
     			attr_dev(div4, "class", "mx-60 font-sans");
-    			add_location(div4, file, 180, 1, 4575);
+    			add_location(div4, file, 181, 1, 4576);
     			attr_dev(span2, "class", "font-bold");
-    			add_location(span2, file, 183, 54, 4777);
+    			add_location(span2, file, 184, 54, 4778);
     			attr_dev(h1, "class", "font-sans text-3xl text-center");
-    			add_location(h1, file, 183, 1, 4724);
+    			add_location(h1, file, 184, 1, 4725);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -10363,14 +10361,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(137:0) {#if hasStarted}",
+    		source: "(138:0) {#if hasStarted}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (145:2) {#if gotChoices}
+    // (146:2) {#if gotChoices}
     function create_if_block_2(ctx) {
     	let virtuallist;
     	let current;
@@ -10432,14 +10430,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(145:2) {#if gotChoices}",
+    		source: "(146:2) {#if gotChoices}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (154:4) 
+    // (155:4) 
     function create_item_slot(ctx) {
     	let div;
     	let choice;
@@ -10465,7 +10463,7 @@ var app = (function () {
     			create_component(choice.$$.fragment);
     			attr_dev(div, "slot", "item");
     			attr_dev(div, "style", div_style_value = /*style*/ ctx[23]);
-    			add_location(div, file, 153, 4, 3934);
+    			add_location(div, file, 154, 4, 3935);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -10504,14 +10502,14 @@ var app = (function () {
     		block,
     		id: create_item_slot.name,
     		type: "slot",
-    		source: "(154:4) ",
+    		source: "(155:4) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (160:2) {#if !gotChoices}
+    // (161:2) {#if !gotChoices}
     function create_if_block_1(ctx) {
     	let div;
     	let progresslinear0;
@@ -10566,7 +10564,7 @@ var app = (function () {
     			t2 = space();
     			create_component(progresslinear1.$$.fragment);
     			attr_dev(div, "class", "text-center");
-    			add_location(div, file, 160, 3, 4227);
+    			add_location(div, file, 161, 3, 4228);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -10615,21 +10613,21 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(160:2) {#if !gotChoices}",
+    		source: "(161:2) {#if !gotChoices}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (165:3) {#each createArray(numBrs/2) as i}
+    // (166:3) {#each createArray(numBrs/2) as i}
     function create_each_block_1(ctx) {
     	let br;
 
     	const block = {
     		c: function create() {
     			br = element("br");
-    			add_location(br, file, 165, 4, 4365);
+    			add_location(br, file, 166, 4, 4366);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, br, anchor);
@@ -10643,21 +10641,21 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(165:3) {#each createArray(numBrs/2) as i}",
+    		source: "(166:3) {#each createArray(numBrs/2) as i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (170:3) {#each createArray(numBrs/2) as i}
+    // (171:3) {#each createArray(numBrs/2) as i}
     function create_each_block(ctx) {
     	let br;
 
     	const block = {
     		c: function create() {
     			br = element("br");
-    			add_location(br, file, 170, 4, 4426);
+    			add_location(br, file, 171, 4, 4427);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, br, anchor);
@@ -10671,7 +10669,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(170:3) {#each createArray(numBrs/2) as i}",
+    		source: "(171:3) {#each createArray(numBrs/2) as i}",
     		ctx
     	});
 

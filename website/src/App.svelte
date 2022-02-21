@@ -126,6 +126,7 @@
 	</a>
 </AppBar>
 
+
 {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
 	<!-- when u won or lost-->
 	<End topic={currentTopic} moves={numMoves - movesLeft} won={currentTopic?.toUpperCase() == endTopic?.toUpperCase()} on:retry={reset}/>
