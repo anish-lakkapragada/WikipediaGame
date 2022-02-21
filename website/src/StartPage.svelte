@@ -3,13 +3,15 @@
     import {TextField, Slider, Button} from "smelte";
     import {isWikipediaTopic} from "./utils.js";
     import {createEventDispatcher, tick} from "svelte";
-    let numTries = 10; 
+    
+    export let topicStart; 
+    export let topicEnd; 
+    
+    let numTries = 10;  
 
     // initialize the janky stuff 
     const dispatch = createEventDispatcher(); 
     let startColor, endColor; 
-    let topicStart = null;
-    let topicEnd = null;
     let startRender = true; 
     let endRender = true;
     let startError; 
@@ -82,8 +84,8 @@
         return color1 == color2 && color1 == 'success'; 
     }
     
-
-
+    changeColor(topicStart, true);
+    changeColor(topicEnd, false);
 
 </script> 
 

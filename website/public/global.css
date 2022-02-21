@@ -188306,6 +188306,9 @@ tr.selected {
   -ms-transform:rotate(90deg);
   transform:rotate(90deg)
 }
+#div.svelte-ob7mym{
+  width:100%
+}
 .p-1\/2.svelte-ixci48{
   padding:0.125rem
 }

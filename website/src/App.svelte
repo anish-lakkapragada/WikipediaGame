@@ -1,33 +1,44 @@
 
 <script>
 	import "smelte/src/tailwind.css" ;
-	import {onMount, tick} from "svelte";
+	import {tick} from "svelte";
 	import VirtualList from 'svelte-tiny-virtual-list';
 	import StartPage from "./StartPage.svelte";
 	import Choice from "./Choice.svelte";
+	import End from "./End.svelte"; 
 	import {moveTopic, getInfo} from "./utils";
 	import Overlay from 'svelte-overlay';
 	import {ProgressLinear } from "smelte";
 	import {TextField} from "smelte"; 
 	import {AppBar} from "smelte";
 
-	let hasStarted = true; // todo change this 
-	let movesLeft = 10; 
+	// fix all these settings after
+	let hasStarted = true;
+	let movesLeft = 0; 
+	let numMoves = 0; 
 	let currentTopic = "Sports"; 
+	let startTopic = "Sports";
 	let endTopic= "Calculus";
 	let items = []; 
 	let gotChoices = false; 
 	let searchTopic; let scrollIndex;
-	let forceRerender = true;  
 	const numBrs = 22; 
-	const handleEvent = (event) => {
+
+	const startGame = (event) => {
 		const detail = event.detail; 
 		movesLeft = detail.moves; 
+		numMoves = movesLeft; 
 		currentTopic = detail.startTopic; 
+		startTopic = currentTopic; 
 		endTopic = detail.endTopic;
 		hasStarted = true; 
 		gotChoices = false; 
 	}	
+
+	const retry = (e) => {
+		hasStarted = false; 
+		gotChoices = false;
+	}
 
 	async function infoify() {
 		const promises = []; 
@@ -91,11 +102,10 @@
 		return arr; 
 	}
 
-	const reset = async () => {
+	const reset =  () => {
 		hasStarted = false;
 		gotChoices = false; 
-		currentTopic = null; 
-		endTopic = null; 
+		currentTopic = null;  
 		movesLeft = 10; 
 	}
 
@@ -113,22 +123,26 @@
 		</button>
 	{/if}
 
-	<h3 class="flex items-center font-sans justify-center text-3xl w-full"> Wikipedia Game </h3>
+	<h3 class="flex items-center font-sans justify-center text-xl w-full"> Wikipedia Game </h3>
 	<a class="float-right mr-5" href="https://github.com/anish-lakkapragada">
-		<img alt="Github Logo" src="https://smeltejs.com/github.png" class="w-12">
+		<img alt="Github Logo" src="https://smeltejs.com/github.png" class="w-6">
 	</a>
 </AppBar>
 
+{#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
+	<!-- when u won or lost-->
+	<End topic={currentTopic} moves={numMoves - movesLeft} won={currentTopic?.toUpperCase() == endTopic?.toUpperCase()} on:retry={reset}/>
+{/if}
+
 {#if !hasStarted} 
-	<StartPage on:start={handleEvent}/> 
+	<StartPage topicStart={startTopic} topicEnd={endTopic} on:start={startGame}/> 
 {/if}
 {#if hasStarted}
-	<div class="font-sans mt-2 text-center"> 
+	<div class="font-sans text-center flex justify-center items-center w-full mt-2"> 
 		<span class="text-2xl"> {currentTopic} <span class="material-icons text-8xl"> arrow_right_alt </span> {endTopic} </span>
 	</div>
 
-
-	<div class="mx-10"> 
+	<div class="mx-10 -mt-3.5"> 
 		<br> 
 		<div class="border-b-2 border-black"> </div>
 		{#if gotChoices}
@@ -169,7 +183,6 @@
 
 	<div class="mx-60 font-sans">
 			<TextField disabled={!gotChoices} label="Search Topic" on:blur={scrollToTopic} bind:value={searchTopic}/>	
-			<pre class="text-center mt-0 font-sans text-1xl"> Enter Which Topic You Want to Go To</pre>
 	</div>
 	<h1 class="font-sans text-3xl text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
 {/if}

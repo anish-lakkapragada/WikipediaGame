@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import json from '@rollup/plugin-json';
 //const smelte = require('smelte/rollup-plugin-smelte');
-import smelte from "smelte/rollup-plugin-smelte";
+import smelte from 'smelte/rollup-plugin-smelte';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -69,7 +69,7 @@ export default {
 					error: '#e11d48',
 					success: '#22c55e',
 					dark: '#212121',
-					blue: '#2196f3',
+					blue: '#2196f3'
 				}, // Object of colors to generate a palette from, and then all the utility classes
 				darkMode: true,
 			}, // Any other props will be applied on top of default Smelte tailwind.config.js

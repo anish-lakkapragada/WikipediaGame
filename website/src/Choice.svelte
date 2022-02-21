@@ -29,7 +29,7 @@
 
 
 <div class="font-sans"> 
-    <Card.Card hoverElevation={20}> 
+    <Card.Card elevation={12}> 
         <Card.Title
             title={title}
             subheader={description}
