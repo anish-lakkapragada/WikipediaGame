@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "npx tsc -p .",
-    "build frontend": "rollup -c",
+    "buildfront": "rollup -c",
     "frontstart": "sirv website/public",
     "start": "node build/app.js",
     "devapi": "nodemon src/app.ts",
