@@ -1,6 +1,7 @@
 <script> 
     import "smelte/src/tailwind.css" ;
-    import {Dialog, Button} from "smelte";
+    import Button from "smelte/src/components/Button"; 
+    import Dialog from "smelte/src/components/Dialog";
     import { createEventDispatcher } from "svelte";
 
     const dispatcher = createEventDispatcher(); 

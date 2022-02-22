@@ -7,9 +7,9 @@
 	import Choice from "./Choice.svelte";
 	import End from "./End.svelte"; 
 	import {moveTopic, getInfo} from "./utils";
-	import {ProgressLinear } from "smelte";
-	import {TextField} from "smelte"; 
-	import {AppBar} from "smelte";
+	import AppBar from "smelte/src/components/AppBar";
+	import TextField from "smelte/src/components/TextField";
+	import ProgressLinear from "smelte/src/components/ProgressLinear";
 
 	// fix all these settings after
 	let hasStarted = false;

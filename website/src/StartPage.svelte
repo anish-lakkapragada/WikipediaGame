@@ -1,6 +1,9 @@
 <script> 
-    import "smelte/src/tailwind.css" ;
-    import {TextField, Slider, Button} from "smelte";
+    import "smelte/src/tailwind.css";
+    import TextField from "smelte/src/components/TextField";
+    import Slider from "smelte/src/components/Slider";
+    import Button from "smelte/src/components/Button";
+
     import {isWikipediaTopic} from "./utils.js"; 
     import {createEventDispatcher, tick} from "svelte";
     
