@@ -8833,10 +8833,10 @@ var app = (function () {
     			br1 = element("br");
     			t6 = space();
     			create_component(button.$$.fragment);
-    			attr_dev(p, "class", "text-2xl ");
+    			attr_dev(p, "class", "text-2xl");
     			add_location(p, file$3, 93, 4, 2260);
-    			add_location(br0, file$3, 104, 4, 2898);
-    			add_location(br1, file$3, 105, 4, 2908);
+    			add_location(br0, file$3, 104, 4, 2897);
+    			add_location(br1, file$3, 105, 4, 2907);
     			attr_dev(div, "class", "text-center font-sans mx-20 mt-4");
     			add_location(div, file$3, 92, 0, 2208);
     		},

@@ -91,7 +91,7 @@
 
 
 <div class="text-center font-sans mx-20 mt-4"> 
-    <p class="text-2xl "> In the wikipedia game, you try to go from one article to another only using the hyperlinks on the page, as fast as you can. </p>
+    <p class="text-2xl"> In the wikipedia game, you try to go from one article to another only using the hyperlinks on the page, as fast as you can. </p>
 
     {#if startRender}
         <TextField color={startColor} on:blur={() => {changeColor(topicStart, true)}} label="Starting Topic" bind:value={topicStart} error={startError}/>  
