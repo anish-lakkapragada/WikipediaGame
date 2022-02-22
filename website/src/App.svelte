@@ -8,7 +8,7 @@
 	import End from "./End.svelte"; 
 	import {moveTopic, getInfo} from "./utils";
 	import AppBar from "smelte/src/components/AppBar";
-	import TextField from "smelte/src/components/TextField";
+	import TextField from "./TextField.svelte";
 	import ProgressLinear from "smelte/src/components/ProgressLinear";
 
 	// fix all these settings after
@@ -113,18 +113,20 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-hamburgers@3/dist/css/base.css" />
 
-<AppBar class="flex items-center"> 
+<header class="items-center flex font-sans shadow bg-primary-300 dark:bg-dark-600"> 
+
 	{#if hasStarted}
 		<button class="ml-5" on:click={reset}> 
 			<span class="material-icons"> arrow_back </span>
 		</button>
 	{/if}
 
-	<h3 class="flex items-center font-sans justify-center text-xl w-full"> Wikipedia Game </h3>
+	<h3 class="flex justify-center w-full items-center text-xl">Wikipedia Game</h3> 
+	
 	<a class="float-right mr-5" href="https://github.com/anish-lakkapragada">
 		<img alt="Github Logo" src="https://smeltejs.com/github.png" class="w-6">
 	</a>
-</AppBar>
+</header>
 
 
 {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
