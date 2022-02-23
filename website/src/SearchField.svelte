@@ -47,6 +47,7 @@
 </script> 
 
 {#if render} 
+
     <TextField label="Search Topic" color={color} on:blur={search} bind:value={searchTopic}/>
-    <p class={"font-sans text-center text-sm -mt-4 " + `text-${color}-300`}> {hint} </p>
+    <p class={"font-sans text-center text-sm  -mt-4 " + `text-${color}-300`}> {hint} </p>
 {/if}

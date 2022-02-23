@@ -107,7 +107,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-hamburgers@3/dist/css/base.css" />
 
 <html lang="en" class="mode-dark min-h-screen"> 
-	<body class="min-h-screen"> 
+	<body class="min-h-screen !min-w-screen"> 
 
 	
 		<header class="items-center flex font-sans shadow bg-primary-500"> 
@@ -134,14 +134,19 @@
 		{#if !hasStarted} 
 			<StartPage topicStart={startTopic} topicEnd={endTopic} on:start={startGame}/> 
 		{/if}
+
 		{#if hasStarted}
-			<div class="font-sans text-center flex justify-center items-center w-full mt-2"> 
-				<span class="text-2xl"> {currentTopic} <span class="material-icons text-8xl"> arrow_right_alt </span> {endTopic} </span>
+			<div class="font-sans flex"> 
+				<div class="flex justify-center w-full items-center text-2xl mt-2">
+					<span> {currentTopic} <span class="material-icons text-8xl"> arrow_right_alt </span> {endTopic} </span> 
+				</div>
 			</div>
 
-			<div class="mx-10 -mt-3.5"> 
-				<br> 
-				<div class="border-b-2 border-black"> </div>
+			<div class="md:absolute top-12 font-sans sm:mt-4 sm:mx-20 md:-mt-4 right-12">
+				<SearchField on:search={updateScroll} items={items}></SearchField>
+			</div>
+
+			<div class="mx-10 mt-14"> 
 				{#if gotChoices}
 					<VirtualList
 					width="100%"
@@ -149,7 +154,7 @@
 					itemCount={items.length}
 					scrollToIndex={scrollIndex}
 					scrollToAlignment="start"
-					itemSize={150} 
+					itemSize={300} 
 					>
 						<div slot="item" let:index let:style {style}>
 							<Choice topic={items[index].topic} winningTopic={endTopic} image={items[index].image}
@@ -159,30 +164,17 @@
 					</VirtualList>
 				{/if}
 				{#if !gotChoices}
-					<div class="text-center">
+					<div class="mb-44">
 						<ProgressLinear color="primary"> </ProgressLinear>
 					</div>
-					
-					{#each createArray(numBrs/2) as i} 
-						<br>
-					{/each}
 
-
-					{#each createArray(numBrs/2) as i} 
-						<br>
-					{/each}
-					
-					<ProgressLinear color="primary"> </ProgressLinear>
+					<div class="pt-96">
+						<ProgressLinear color="primary"> </ProgressLinear>
+					</div>
 				{/if}
-				
-				<div class="border-t-2 border-black"> </div>
-				<br>
 			</div>
 
-			<div class="mx-60 font-sans">
-					<SearchField on:search={updateScroll} items={items}></SearchField>
-			</div>
-			<h1 class="font-sans text-3xl text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
+			<h1 class="font-sans text-2xl text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
 		{/if}
 	</body>
 </html>

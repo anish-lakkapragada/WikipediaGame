@@ -569,9 +569,9 @@ video {
   width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 100px) {
   .container {
-    max-width: 640px;
+    max-width: 100px;
   }
 }
 
@@ -719,7 +719,7 @@ video {
   --color-gray-trans: rgba(250, 250, 250, 0.5);
   --color-gray-trans-light: rgba(250, 250, 250, 0.1);
   --color-gray-trans-dark: rgba(100, 100, 100, 0.2);
-  --sm: 640px;
+  --sm: 100px;
   --md: 768px;
   --lg: 1024px;
   --xl: 1280px;
@@ -924,7 +924,7 @@ video {
   --max-w-min: min-content;
   --max-w-max: max-content;
   --max-w-prose: 65ch;
-  --max-w-screen-sm: 640px;
+  --max-w-screen-sm: 100px;
   --max-w-screen-md: 768px;
   --max-w-screen-lg: 1024px;
   --max-w-screen-xl: 1280px;
@@ -7569,7 +7569,7 @@ video {
 }
 
 .max-w-screen-sm {
-  max-width: 640px;
+  max-width: 100px;
 }
 
 .max-w-screen-md {
@@ -38653,14 +38653,14 @@ tr.selected {
   letter-spacing: 0.25px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 100px) {
   .sm\:container {
     width: 100%;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 100px) {
     .sm\:container {
-      max-width: 640px;
+      max-width: 100px;
     }
   }
 
@@ -45147,7 +45147,7 @@ tr.selected {
   }
 
   .sm\:max-w-screen-sm {
-    max-width: 640px;
+    max-width: 100px;
   }
 
   .sm\:max-w-screen-md {
@@ -68584,9 +68584,9 @@ tr.selected {
     width: 100%;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 100px) {
     .md\:container {
-      max-width: 640px;
+      max-width: 100px;
     }
   }
 
@@ -75073,7 +75073,7 @@ tr.selected {
   }
 
   .md\:max-w-screen-sm {
-    max-width: 640px;
+    max-width: 100px;
   }
 
   .md\:max-w-screen-md {
@@ -98510,9 +98510,9 @@ tr.selected {
     width: 100%;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 100px) {
     .lg\:container {
-      max-width: 640px;
+      max-width: 100px;
     }
   }
 
@@ -104999,7 +104999,7 @@ tr.selected {
   }
 
   .lg\:max-w-screen-sm {
-    max-width: 640px;
+    max-width: 100px;
   }
 
   .lg\:max-w-screen-md {
@@ -128436,9 +128436,9 @@ tr.selected {
     width: 100%;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 100px) {
     .xl\:container {
-      max-width: 640px;
+      max-width: 100px;
     }
   }
 
@@ -134925,7 +134925,7 @@ tr.selected {
   }
 
   .xl\:max-w-screen-sm {
-    max-width: 640px;
+    max-width: 100px;
   }
 
   .xl\:max-w-screen-md {
@@ -158362,9 +158362,9 @@ tr.selected {
     width: 100%;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 100px) {
     .\32xl\:container {
-      max-width: 640px;
+      max-width: 100px;
     }
   }
 
@@ -164851,7 +164851,7 @@ tr.selected {
   }
 
   .\32xl\:max-w-screen-sm {
-    max-width: 640px;
+    max-width: 100px;
   }
 
   .\32xl\:max-w-screen-md {

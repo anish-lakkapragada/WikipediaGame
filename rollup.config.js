@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -60,7 +61,14 @@ export default {
 							84: '21rem',
 							96: '24rem'
 						}
-					}
+					}, 
+					screens: {
+						'sm': '100px',
+						'md': '768px',
+						'lg': '1024px',		  
+						'xl': '1280px',  
+						'2xl': '1536px',
+					  }
 				}, // Extend Tailwind theme
 				colors: {
 					primary: '#14b8a6',

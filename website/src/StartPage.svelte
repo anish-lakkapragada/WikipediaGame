@@ -94,17 +94,24 @@
 
 
 <div class="text-center font-sans mx-20 mt-4"> 
-    <p class="text-2xl"> In the wikipedia game, you try to go from one article to another only using the hyperlinks on the page, as fast as you can. </p>
+    <p class="md:text-2xl sm:text-base sm:mb-10"> In the wikipedia game, you try to go from one article to another only using the hyperlinks on the page, as fast as you can. </p>
 
     {#if startRender}
-        <TextField color={startColor} on:blur={() => {changeColor(topicStart, true)}} label="Starting Topic" bind:value={topicStart} error={startError}/>  
+        <div class="sm:mb-10">
+            <TextField color={startColor} on:blur={() => {changeColor(topicStart, true)}} label="Starting Topic" bind:value={topicStart} error={startError}/>  
+        </div>
     {/if}
 
     {#if endRender}
-        <TextField color={endColor} on:blur={() => {changeColor(topicEnd, false)}} label="Ending Topic" bind:value={topicEnd} error={endError}/>  
+        <div class="sm:mb-10">
+            <TextField color={endColor} on:blur={() => {changeColor(topicEnd, false)}} label="Ending Topic" bind:value={topicEnd} error={endError}/>  
+        </div>
     {/if}
-    
-    <Slider color="secondary" min="1" max="50" bind:value={numTries} label={`Number of Moves: ${numTries}`} />
+
+    <div class="sm:mt-10 sm:mb-5">
+        <Slider color="secondary" min="1" max="50" bind:value={numTries} label={`Number of Moves: ${numTries}`}/>
+    </div>
+
     <br> 
     <br> 
 
