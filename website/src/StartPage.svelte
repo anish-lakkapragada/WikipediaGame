@@ -109,8 +109,6 @@
     <br> 
 
     <Button on:click={alertView} class={isReady(startColor, endColor) ? 'opacity-100': 'opacity-90'} disabled={!isReady(startColor, endColor)} block color="success"> Start </Button>  
-
-
 </div>
 
 
