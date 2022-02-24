@@ -3,3 +3,5 @@ node_modules
 /website/public/build/
 /website/public/global.css
 *.env
+/build/
+.gitignore
