@@ -2,7 +2,7 @@
 
 ### The Wikipedia Game is a game where you try to go from one page to another only using the hyperlinks on the page. 
 
-This [website](https://anish-lakkapragada.github.io/WikipediaGame/) helps streamline this process by tracking how many moves you are taking to get to your end goal. Also known as *wiki racing*. 
+This [project](https://anish-lakkapragada.github.io/WikipediaGame/) helps streamline this process by tracking how many moves you are taking to get to your end goal in a friendly interface. This game is also known as *wiki racing*. 
 
 # How it works
 
@@ -14,5 +14,5 @@ When you choose the topic you want to start and the topic you want to end on, it
 Frontend of the website was built with Svelte (similar framework to React.js). I also used UI libraries like Smelte (which uses Tailwind CSS.) Code is in the `website` folder. 
 
 ## Backend
-Created a backend (deployed on Heroku) in TypeScript to scrape the given wikipedia topic page to get all the hyperlinks available. Code is in the `src` folder. 
+Created a backend (deployed on Heroku) in TypeScript with NodeJS express to scrape the given wikipedia topic page to get all the hyperlinks available. Code is in the `src` folder. 
 
