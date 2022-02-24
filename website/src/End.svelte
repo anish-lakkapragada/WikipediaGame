@@ -28,12 +28,12 @@
             <strong> {won ? "You won!" : "You lost!"} </strong>
         </h1>
 
-        <h3 class="font-sans text-base text-center -mt-1 mb-6"> You used <strong> {moves} </strong>  moves, {won ? "to win." : "but you still lost."} </h3>
+        <h3 class="font-sans text-base text-center -mt-1 mb-6"> You used <strong> {moves} </strong>  {moves > 1 ? "moves": "move"}, {won ? "to win." : "but you still lost."} </h3>
         <div class="text-center">
             <Button on:click={retryGame} flat class="text-xl font-sans"> Play Again! </Button>
         </div>
 
         <div class="text-center ml-auto mr-auto w-32">
-            <iframe class="mt-4" src="https://ghbtns.com/github-btn.html?user=anish-lakkapragada&repo=MoreCycle&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="50" title="GitHub"></iframe>
+            <iframe class="mt-4" src="https://ghbtns.com/github-btn.html?user=anish-lakkapragada&repo=WikipediaGame&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="50" title="GitHub"></iframe>
         </div>
 </Dialog>
