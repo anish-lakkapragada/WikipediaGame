@@ -2,7 +2,7 @@
 
 ### The Wikipedia Game is a game where you try to go from one page to another only using the hyperlinks on the page. 
 
-This [website](https://anish-lakkapragada.github.io/WikipediaGame/) helps streamline this process by tracking how many moves you are taking to get to your end goal. Also known as *wiki racing*. 
+This [project](https://anish-lakkapragada.github.io/WikipediaGame/) helps streamline this process by tracking how many moves you are taking to get to your end goal in a friendly interface. This game is also known as *wiki racing*. 
 
 # How it works
 
