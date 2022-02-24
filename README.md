@@ -14,5 +14,5 @@ When you choose the topic you want to start and the topic you want to end on, it
 Frontend of the website was built with Svelte (similar framework to React.js). I also used UI libraries like Smelte (which uses Tailwind CSS.) Code is in the `website` folder. 
 
 ## Backend
-Created a backend (deployed on Heroku) in TypeScript to scrape the given wikipedia topic page to get all the hyperlinks available. Code is in the `src` folder. 
+Created a backend (deployed on Heroku) in TypeScript with NodeJS express to scrape the given wikipedia topic page to get all the hyperlinks available. Code is in the `src` folder. 
 
