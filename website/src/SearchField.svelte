@@ -13,7 +13,7 @@
         let index = null;
         for (let i =0; i < items.length; i++) {
 			const item = items[i]; 
-			if (item?.title.toUpperCase() == searchTopic.toUpperCase()) {
+			if (item?.title?.toUpperCase() == searchTopic.toUpperCase()) {
 				index = i; break; 
 			}
 		}

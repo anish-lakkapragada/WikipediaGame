@@ -85,12 +85,27 @@ export async function isWikipediaTopic(topic) {
 	return true;
 }
 
+const rateLimiter = {lastDate: new Date(), requests: 0}; 
+async function sleep(ms) {
+	await new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export async function getInfo(topic) {
 	const wikiLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png';
+	
+	if (rateLimiter.requests == 5) {
+		console.log('starting');
+		sleep(1000);
+		console.log('ending');
+		rateLimiter.requests = 0;
+	}
 
 	// returns the description and image (if possible)
 	const resp = await fetch('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts|pageimages&exintro&exsentences=1&explaintext&titles=' + topic + '&origin=*'); 
 	const data = await resp.json();
+	
+	rateLimiter.requests++; // update rate limiter
+
 	let title = data.query?.pages[Object.keys(data.query?.pages)[0]].title; 
 	if (title == undefined) {title = topic;}
 
@@ -100,7 +115,7 @@ export async function getInfo(topic) {
 
 	let description = data.query?.pages[Object.keys(data.query?.pages)[0]].extract;
 	if (description?.length > 50) {
-		description = description.slice(0, 75) + '...';
+		description = description.slice(0, 50) + '...';
 	}
 	
 	else if (description?.length <= 1) {

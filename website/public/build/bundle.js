@@ -7024,12 +7024,27 @@ var app = (function () {
     	return true;
     }
 
+    const rateLimiter = {lastDate: new Date(), requests: 0}; 
+    async function sleep(ms) {
+    	await new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     async function getInfo(topic) {
     	const wikiLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png';
+    	
+    	if (rateLimiter.requests == 5) {
+    		console.log('starting');
+    		sleep(1000);
+    		console.log('ending');
+    		rateLimiter.requests = 0;
+    	}
 
     	// returns the description and image (if possible)
     	const resp = await fetch('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts|pageimages&exintro&exsentences=1&explaintext&titles=' + topic + '&origin=*'); 
     	const data = await resp.json();
+    	
+    	rateLimiter.requests++; // update rate limiter
+
     	let title = data.query?.pages[Object.keys(data.query?.pages)[0]].title; 
     	if (title == undefined) {title = topic;}
 
@@ -7039,7 +7054,7 @@ var app = (function () {
 
     	let description = data.query?.pages[Object.keys(data.query?.pages)[0]].extract;
     	if (description?.length > 50) {
-    		description = description.slice(0, 75) + '...';
+    		description = description.slice(0, 50) + '...';
     	}
     	
     	else if (description?.length <= 1) {
@@ -9515,7 +9530,7 @@ var app = (function () {
     			p = element("p");
     			t1 = text(/*hint*/ ctx[3]);
     			attr_dev(p, "class", p_class_value = "font-sans text-center text-sm  -mt-4 " + `text-${/*color*/ ctx[2]}-300`);
-    			add_location(p, file$2, 51, 4, 1220);
+    			add_location(p, file$2, 51, 4, 1221);
     		},
     		m: function mount(target, anchor) {
     			mount_component(textfield, target, anchor);
@@ -9652,7 +9667,7 @@ var app = (function () {
     		for (let i = 0; i < items.length; i++) {
     			const item = items[i];
 
-    			if (item?.title.toUpperCase() == searchTopic.toUpperCase()) {
+    			if (item?.title?.toUpperCase() == searchTopic.toUpperCase()) {
     				index = i;
     				break;
     			}
@@ -9969,7 +9984,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file = "website/src/App.svelte";
 
-    // (115:3) {#if hasStarted}
+    // (123:3) {#if hasStarted}
     function create_if_block_5(ctx) {
     	let button;
     	let span;
@@ -9982,9 +9997,9 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "arrow_back";
     			attr_dev(span, "class", "material-icons");
-    			add_location(span, file, 116, 5, 2687);
+    			add_location(span, file, 124, 5, 3009);
     			attr_dev(button, "class", "ml-5");
-    			add_location(button, file, 115, 4, 2642);
+    			add_location(button, file, 123, 4, 2964);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -10007,14 +10022,14 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(115:3) {#if hasStarted}",
+    		source: "(123:3) {#if hasStarted}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (129:2) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
+    // (137:2) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
     function create_if_block_4(ctx) {
     	let end;
     	let current;
@@ -10063,14 +10078,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(129:2) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}",
+    		source: "(137:2) {#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (134:2) {#if !hasStarted}
+    // (142:2) {#if !hasStarted}
     function create_if_block_3(ctx) {
     	let startpage;
     	let current;
@@ -10117,14 +10132,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(134:2) {#if !hasStarted}",
+    		source: "(142:2) {#if !hasStarted}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (138:2) {#if hasStarted}
+    // (146:2) {#if hasStarted}
     function create_if_block(ctx) {
     	let div1;
     	let div0;
@@ -10183,20 +10198,20 @@ var app = (function () {
     			t11 = space();
     			if (if_block1) if_block1.c();
     			attr_dev(span0, "class", "material-icons text-8xl");
-    			add_location(span0, file, 140, 27, 3574);
-    			add_location(span1, file, 140, 5, 3552);
+    			add_location(span0, file, 148, 27, 3910);
+    			add_location(span1, file, 148, 5, 3888);
     			attr_dev(div0, "class", "flex justify-center w-full items-center text-2xl mt-2");
-    			add_location(div0, file, 139, 4, 3479);
+    			add_location(div0, file, 147, 4, 3815);
     			attr_dev(div1, "class", "font-sans flex");
-    			add_location(div1, file, 138, 3, 3445);
-    			attr_dev(div2, "class", "md:absolute top-12 font-sans sm:mt-4 sm:mx-20 md:-mt-4 right-0");
-    			add_location(div2, file, 144, 3, 3682);
+    			add_location(div1, file, 146, 3, 3781);
+    			attr_dev(div2, "class", "md:absolute top-12 font-sans sm:mt-4 md:mx-2 sm:mx-20 md:-mt-4 right-12");
+    			add_location(div2, file, 152, 3, 4018);
     			attr_dev(span2, "class", "font-bold");
-    			add_location(span2, file, 149, 61, 3903);
-    			attr_dev(h1, "class", "font-sans text-2xl mt-3 text-center");
-    			add_location(h1, file, 149, 3, 3845);
+    			add_location(span2, file, 157, 61, 4248);
+    			attr_dev(h1, "class", "font-sans text-3xl mt-3 text-center");
+    			add_location(h1, file, 157, 3, 4190);
     			attr_dev(div3, "class", "mx-10 mt-12");
-    			add_location(div3, file, 151, 3, 3970);
+    			add_location(div3, file, 159, 3, 4315);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -10306,20 +10321,22 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(138:2) {#if hasStarted}",
+    		source: "(146:2) {#if hasStarted}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (153:4) {#if gotChoices}
+    // (161:4) {#if gotChoices}
     function create_if_block_2(ctx) {
     	let virtuallist;
     	let t0;
     	let footer;
     	let hr;
     	let t1;
+    	let br;
+    	let t2;
     	let current;
 
     	virtuallist = new VirtualList({
@@ -10348,10 +10365,13 @@ var app = (function () {
     			t0 = space();
     			footer = element("footer");
     			hr = element("hr");
-    			t1 = text(" © Anish Lakkapragada 2021");
-    			add_location(hr, file, 168, 44, 4578);
+    			t1 = space();
+    			br = element("br");
+    			t2 = text(" © Anish Lakkapragada 2021");
+    			add_location(hr, file, 176, 44, 4928);
+    			add_location(br, file, 176, 49, 4933);
     			attr_dev(footer, "class", "font-sans text-center");
-    			add_location(footer, file, 168, 5, 4539);
+    			add_location(footer, file, 176, 5, 4889);
     		},
     		m: function mount(target, anchor) {
     			mount_component(virtuallist, target, anchor);
@@ -10359,6 +10379,8 @@ var app = (function () {
     			insert_dev(target, footer, anchor);
     			append_dev(footer, hr);
     			append_dev(footer, t1);
+    			append_dev(footer, br);
+    			append_dev(footer, t2);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -10392,14 +10414,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(153:4) {#if gotChoices}",
+    		source: "(161:4) {#if gotChoices}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (162:6) 
+    // (170:6) 
     function create_item_slot(ctx) {
     	let div;
     	let choice;
@@ -10427,10 +10449,10 @@ var app = (function () {
     			create_component(choice.$$.fragment);
     			t = space();
     			hr = element("hr");
-    			add_location(hr, file, 164, 7, 4493);
+    			add_location(hr, file, 172, 7, 4838);
     			attr_dev(div, "slot", "item");
     			attr_dev(div, "style", div_style_value = /*style*/ ctx[16]);
-    			add_location(div, file, 161, 6, 4248);
+    			add_location(div, file, 169, 6, 4593);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -10471,14 +10493,14 @@ var app = (function () {
     		block,
     		id: create_item_slot.name,
     		type: "slot",
-    		source: "(162:6) ",
+    		source: "(170:6) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (171:4) {#if !gotChoices}
+    // (179:4) {#if !gotChoices}
     function create_if_block_1(ctx) {
     	let div0;
     	let progresslinear0;
@@ -10505,9 +10527,9 @@ var app = (function () {
     			div1 = element("div");
     			create_component(progresslinear1.$$.fragment);
     			attr_dev(div0, "class", "md:mb-44 sm:mb-33");
-    			add_location(div0, file, 171, 5, 4656);
-    			attr_dev(div1, "class", "md:pt-96 sm:pt-96");
-    			add_location(div1, file, 175, 5, 4763);
+    			add_location(div0, file, 179, 5, 5011);
+    			attr_dev(div1, "class", "md:pt-96 sm:pt-80");
+    			add_location(div1, file, 183, 5, 5118);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -10541,7 +10563,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(171:4) {#if !gotChoices}",
+    		source: "(179:4) {#if !gotChoices}",
     		ctx
     	});
 
@@ -10596,26 +10618,26 @@ var app = (function () {
     			if (if_block3) if_block3.c();
     			attr_dev(link0, "href", "https://fonts.googleapis.com/icon?family=Material+Icons");
     			attr_dev(link0, "rel", "stylesheet");
-    			add_location(link0, file, 105, 0, 2263);
+    			add_location(link0, file, 113, 0, 2585);
     			attr_dev(link1, "rel", "stylesheet");
     			attr_dev(link1, "href", "https://cdn.jsdelivr.net/npm/svelte-hamburgers@3/dist/css/base.css");
-    			add_location(link1, file, 106, 0, 2350);
+    			add_location(link1, file, 114, 0, 2672);
     			attr_dev(h3, "class", "flex justify-center w-full items-center text-xl");
-    			add_location(h3, file, 120, 3, 2763);
+    			add_location(h3, file, 128, 3, 3085);
     			attr_dev(img, "alt", "Github Logo");
     			if (!src_url_equal(img.src, img_src_value = "https://smeltejs.com/github.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "w-6");
-    			add_location(img, file, 123, 4, 2929);
+    			add_location(img, file, 131, 4, 3265);
     			attr_dev(a, "class", "float-right mr-5");
-    			attr_dev(a, "href", "https://github.com/anish-lakkapragada");
-    			add_location(a, file, 122, 3, 2851);
+    			attr_dev(a, "href", "https://github.com/anish-lakkapragada/WikipediaGame");
+    			add_location(a, file, 130, 3, 3173);
     			attr_dev(header, "class", "items-center flex font-sans shadow bg-primary-500");
-    			add_location(header, file, 112, 2, 2549);
+    			add_location(header, file, 120, 2, 2871);
     			attr_dev(body, "class", "min-h-screen !min-w-screen");
-    			add_location(body, file, 109, 1, 2501);
+    			add_location(body, file, 117, 1, 2823);
     			attr_dev(html, "lang", "en");
     			attr_dev(html, "class", "mode-dark min-h-screen");
-    			add_location(html, file, 108, 0, 2451);
+    			add_location(html, file, 116, 0, 2773);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10764,7 +10786,7 @@ var app = (function () {
     	return block;
     }
 
-    const numBrs = 22;
+    const MAX_DESCRIPTIONS = 300;
 
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
@@ -10798,12 +10820,19 @@ var app = (function () {
 
     		for (let i = 0; i < items.length; i++) {
     			promises.push(new Promise(resolve => {
-    					getInfo(items[i].topic).then(info => {
-    						const { topic } = items[i];
-    						$$invalidate(6, items[i] = info, items);
-    						$$invalidate(6, items[i].topic = topic, items);
+    					if (i >= MAX_DESCRIPTIONS) {
+    						$$invalidate(6, items[i].description = "No available description.", items);
+    						$$invalidate(6, items[i].title = items[i].topic, items);
+    						$$invalidate(6, items[i].image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png', items);
     						resolve();
-    					});
+    					} else {
+    						getInfo(items[i].topic).then(info => {
+    							const { topic } = items[i];
+    							$$invalidate(6, items[i] = info, items);
+    							$$invalidate(6, items[i].topic = topic, items);
+    							resolve();
+    						});
+    					}
     				}));
     		}
 
@@ -10882,7 +10911,7 @@ var app = (function () {
     		items,
     		gotChoices,
     		scrollIndex,
-    		numBrs,
+    		MAX_DESCRIPTIONS,
     		startGame,
     		infoify,
     		updateChoices,

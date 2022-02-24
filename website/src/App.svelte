@@ -20,7 +20,7 @@
 	let items = []; 
 	let gotChoices = false; 
 	let scrollIndex;
-	const numBrs = 22; 
+	const MAX_DESCRIPTIONS = 300; 
 
 	const startGame = (event) => {
 		const detail = event.detail; 
@@ -41,12 +41,20 @@
 		const promises = []; 
 		for (let i = 0; i < items.length; i++) {
 			promises.push(new Promise((resolve) => {
-				getInfo(items[i].topic).then((info) => {
-					const {topic} = items[i]; 
-					items[i] = info; 
-					items[i].topic = topic; 
+				if (i >= MAX_DESCRIPTIONS) {
+					items[i].description = "No available description."
+					items[i].title = items[i].topic;
+					items[i].image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png';
 					resolve(); 
-				}); 
+				}
+				else {
+					getInfo(items[i].topic).then((info) => {
+						const {topic} = items[i]; 
+						items[i] = info; 
+						items[i].topic = topic; 
+						resolve(); 
+					}); 
+				}
 			})); 
 		}
 		
@@ -120,7 +128,7 @@
 
 			<h3 class="flex justify-center w-full items-center text-xl">Wikipedia Game</h3> 
 			
-			<a class="float-right mr-5" href="https://github.com/anish-lakkapragada">
+			<a class="float-right mr-5" href="https://github.com/anish-lakkapragada/WikipediaGame">
 				<img alt="Github Logo" src="https://smeltejs.com/github.png" class="w-6">
 			</a>
 		</header>
@@ -142,12 +150,12 @@
 				</div>
 			</div>
 
-			<div class="md:absolute top-12 font-sans sm:mt-4 sm:mx-20 md:-mt-4 right-0">
+			<div class="md:absolute top-12 font-sans sm:mt-4 md:mx-2 sm:mx-20 md:-mt-4 right-12">
 				<SearchField on:search={updateScroll} items={items}></SearchField>
 			</div>
 
 
-			<h1 class="font-sans text-2xl mt-3 text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
+			<h1 class="font-sans text-3xl mt-3 text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
 
 			<div class="mx-10 mt-12"> 
 				{#if gotChoices}
@@ -165,15 +173,15 @@
 							<hr> 	
 						</div>
 					</VirtualList>
-
-					<footer class="font-sans text-center"> <hr> © Anish Lakkapragada 2021 </footer>
+					
+					<footer class="font-sans text-center"> <hr> <br> © Anish Lakkapragada 2021 </footer>
 				{/if}
 				{#if !gotChoices}
 					<div class="md:mb-44 sm:mb-33">
 						<ProgressLinear color="primary"> </ProgressLinear>
 					</div>
 
-					<div class="md:pt-96 sm:pt-96">
+					<div class="md:pt-96 sm:pt-80">
 						<ProgressLinear color="primary"> </ProgressLinear>
 					</div>
 				{/if}
