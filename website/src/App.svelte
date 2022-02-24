@@ -11,12 +11,12 @@
 	import ProgressLinear from "smelte/src/components/ProgressLinear";
 
 	// fix all these settings after
-	let hasStarted = true;
-	let movesLeft = 10; 
+	let hasStarted = false; 
+	let movesLeft; 
 	let numMoves = movesLeft; 
-	let currentTopic = "A"; 
-	let startTopic = "A";
-	let endTopic= "C";
+	let currentTopic; 
+	let startTopic;
+	let endTopic;
 	let items = []; 
 	let gotChoices = false; 
 	let scrollIndex;
@@ -155,7 +155,7 @@
 			</div>
 
 
-			<h1 class="font-sans text-3xl mt-3 text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
+			<h1 class="font-sans md:text-3xl sm:text-2xl mt-3 text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
 
 			<div class="mx-10 mt-12"> 
 				{#if gotChoices}
