@@ -6,7 +6,7 @@
 	import StartPage from "./StartPage.svelte";
 	import Choice from "./Choice.svelte";
 	import End from "./End.svelte"; 
-	import {moveTopic, getInfo} from "./utils";
+	import {moveTopic, getInfo, vlistConfig} from "./utils";
 	import SearchField from "./SearchField.svelte"; 
 	import ProgressLinear from "smelte/src/components/ProgressLinear";
 
@@ -142,19 +142,22 @@
 				</div>
 			</div>
 
-			<div class="md:absolute top-12 font-sans sm:mt-4 sm:mx-20 md:-mt-4 right-12">
+			<div class="md:absolute top-12 font-sans sm:mt-4 sm:mx-20 md:-mt-4 right-0">
 				<SearchField on:search={updateScroll} items={items}></SearchField>
 			</div>
 
-			<div class="mx-10 mt-14"> 
+
+			<h1 class="font-sans text-2xl mt-3 text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
+
+			<div class="mx-10 mt-12"> 
 				{#if gotChoices}
 					<VirtualList
 					width="100%"
-					height={600}
+					height={vlistConfig(window).height}
 					itemCount={items.length}
 					scrollToIndex={scrollIndex}
 					scrollToAlignment="start"
-					itemSize={300} 
+					itemSize={vlistConfig(window).itemSize} 
 					>
 						<div slot="item" let:index let:style {style}>
 							<Choice topic={items[index].topic} winningTopic={endTopic} image={items[index].image}
@@ -162,19 +165,19 @@
 							<hr> 	
 						</div>
 					</VirtualList>
+
+					<footer class="font-sans text-center"> <hr> © Anish Lakkapragada 2021 </footer>
 				{/if}
 				{#if !gotChoices}
-					<div class="mb-44">
+					<div class="md:mb-44 sm:mb-33">
 						<ProgressLinear color="primary"> </ProgressLinear>
 					</div>
 
-					<div class="pt-96">
+					<div class="md:pt-96 sm:pt-96">
 						<ProgressLinear color="primary"> </ProgressLinear>
 					</div>
 				{/if}
 			</div>
-
-			<h1 class="font-sans text-2xl text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
 		{/if}
 	</body>
 </html>

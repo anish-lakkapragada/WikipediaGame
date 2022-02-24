@@ -6937,6 +6937,22 @@ var app = (function () {
     	}
     }
 
+    function vlistConfig(window) {
+    	let itemSize; 
+    	let height; 
+    	if (window.innerWidth < 640) {
+    		height = 600; 
+    		itemSize = 250; 
+    	}
+
+    	else {
+    		itemSize = 150; 
+    		height = 575;
+    	}
+
+    	return {itemSize: itemSize, height: height};
+    }
+
     function edit(hyperlink) {
     	if (hyperlink.startsWith('/wiki/')) {
     		return 'https:/en.wikipedia.org' + hyperlink;
@@ -7022,8 +7038,8 @@ var app = (function () {
     	}
 
     	let description = data.query?.pages[Object.keys(data.query?.pages)[0]].extract;
-    	if (description?.length > 200) {
-    		description = description.slice(0, 200) + '...';
+    	if (description?.length > 50) {
+    		description = description.slice(0, 75) + '...';
     	}
     	
     	else if (description?.length <= 1) {
@@ -9966,9 +9982,9 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "arrow_back";
     			attr_dev(span, "class", "material-icons");
-    			add_location(span, file, 116, 5, 2674);
+    			add_location(span, file, 116, 5, 2687);
     			attr_dev(button, "class", "ml-5");
-    			add_location(button, file, 115, 4, 2629);
+    			add_location(button, file, 115, 4, 2642);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -10122,13 +10138,13 @@ var app = (function () {
     	let div2;
     	let searchfield;
     	let t6;
-    	let div3;
-    	let t7;
-    	let t8;
     	let h1;
-    	let t9;
+    	let t7;
     	let span2;
+    	let t8;
+    	let t9;
     	let t10;
+    	let div3;
     	let t11;
     	let current;
 
@@ -10156,31 +10172,31 @@ var app = (function () {
     			div2 = element("div");
     			create_component(searchfield.$$.fragment);
     			t6 = space();
+    			h1 = element("h1");
+    			t7 = text("You have ");
+    			span2 = element("span");
+    			t8 = text(/*movesLeft*/ ctx[1]);
+    			t9 = text(" moves left!");
+    			t10 = space();
     			div3 = element("div");
     			if (if_block0) if_block0.c();
-    			t7 = space();
+    			t11 = space();
     			if (if_block1) if_block1.c();
-    			t8 = space();
-    			h1 = element("h1");
-    			t9 = text("You have ");
-    			span2 = element("span");
-    			t10 = text(/*movesLeft*/ ctx[1]);
-    			t11 = text(" moves left!");
     			attr_dev(span0, "class", "material-icons text-8xl");
-    			add_location(span0, file, 140, 27, 3561);
-    			add_location(span1, file, 140, 5, 3539);
+    			add_location(span0, file, 140, 27, 3574);
+    			add_location(span1, file, 140, 5, 3552);
     			attr_dev(div0, "class", "flex justify-center w-full items-center text-2xl mt-2");
-    			add_location(div0, file, 139, 4, 3466);
+    			add_location(div0, file, 139, 4, 3479);
     			attr_dev(div1, "class", "font-sans flex");
-    			add_location(div1, file, 138, 3, 3432);
-    			attr_dev(div2, "class", "md:absolute top-12 font-sans sm:mt-4 sm:mx-20 md:-mt-4 right-12");
-    			add_location(div2, file, 144, 3, 3669);
-    			attr_dev(div3, "class", "mx-10 mt-14");
-    			add_location(div3, file, 148, 3, 3832);
+    			add_location(div1, file, 138, 3, 3445);
+    			attr_dev(div2, "class", "md:absolute top-12 font-sans sm:mt-4 sm:mx-20 md:-mt-4 right-0");
+    			add_location(div2, file, 144, 3, 3682);
     			attr_dev(span2, "class", "font-bold");
-    			add_location(span2, file, 176, 56, 4645);
-    			attr_dev(h1, "class", "font-sans text-2xl text-center");
-    			add_location(h1, file, 176, 3, 4592);
+    			add_location(span2, file, 149, 61, 3903);
+    			attr_dev(h1, "class", "font-sans text-2xl mt-3 text-center");
+    			add_location(h1, file, 149, 3, 3845);
+    			attr_dev(div3, "class", "mx-10 mt-12");
+    			add_location(div3, file, 151, 3, 3970);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -10195,16 +10211,16 @@ var app = (function () {
     			insert_dev(target, div2, anchor);
     			mount_component(searchfield, div2, null);
     			insert_dev(target, t6, anchor);
+    			insert_dev(target, h1, anchor);
+    			append_dev(h1, t7);
+    			append_dev(h1, span2);
+    			append_dev(span2, t8);
+    			append_dev(h1, t9);
+    			insert_dev(target, t10, anchor);
     			insert_dev(target, div3, anchor);
     			if (if_block0) if_block0.m(div3, null);
-    			append_dev(div3, t7);
+    			append_dev(div3, t11);
     			if (if_block1) if_block1.m(div3, null);
-    			insert_dev(target, t8, anchor);
-    			insert_dev(target, h1, anchor);
-    			append_dev(h1, t9);
-    			append_dev(h1, span2);
-    			append_dev(span2, t10);
-    			append_dev(h1, t11);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -10213,6 +10229,7 @@ var app = (function () {
     			const searchfield_changes = {};
     			if (dirty & /*items*/ 64) searchfield_changes.items = /*items*/ ctx[6];
     			searchfield.$set(searchfield_changes);
+    			if (!current || dirty & /*movesLeft*/ 2) set_data_dev(t8, /*movesLeft*/ ctx[1]);
 
     			if (/*gotChoices*/ ctx[7]) {
     				if (if_block0) {
@@ -10225,7 +10242,7 @@ var app = (function () {
     					if_block0 = create_if_block_2(ctx);
     					if_block0.c();
     					transition_in(if_block0, 1);
-    					if_block0.m(div3, t7);
+    					if_block0.m(div3, t11);
     				}
     			} else if (if_block0) {
     				group_outros();
@@ -10257,8 +10274,6 @@ var app = (function () {
 
     				check_outros();
     			}
-
-    			if (!current || dirty & /*movesLeft*/ 2) set_data_dev(t10, /*movesLeft*/ ctx[1]);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -10279,11 +10294,11 @@ var app = (function () {
     			if (detaching) detach_dev(div2);
     			destroy_component(searchfield);
     			if (detaching) detach_dev(t6);
+    			if (detaching) detach_dev(h1);
+    			if (detaching) detach_dev(t10);
     			if (detaching) detach_dev(div3);
     			if (if_block0) if_block0.d();
     			if (if_block1) if_block1.d();
-    			if (detaching) detach_dev(t8);
-    			if (detaching) detach_dev(h1);
     		}
     	};
 
@@ -10298,19 +10313,23 @@ var app = (function () {
     	return block;
     }
 
-    // (150:4) {#if gotChoices}
+    // (153:4) {#if gotChoices}
     function create_if_block_2(ctx) {
     	let virtuallist;
+    	let t0;
+    	let footer;
+    	let hr;
+    	let t1;
     	let current;
 
     	virtuallist = new VirtualList({
     			props: {
     				width: "100%",
-    				height: 600,
+    				height: vlistConfig(window).height,
     				itemCount: /*items*/ ctx[6].length,
     				scrollToIndex: /*scrollIndex*/ ctx[8],
     				scrollToAlignment: "start",
-    				itemSize: 300,
+    				itemSize: vlistConfig(window).itemSize,
     				$$slots: {
     					item: [
     						create_item_slot,
@@ -10326,9 +10345,20 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			create_component(virtuallist.$$.fragment);
+    			t0 = space();
+    			footer = element("footer");
+    			hr = element("hr");
+    			t1 = text(" © Anish Lakkapragada 2021");
+    			add_location(hr, file, 168, 44, 4578);
+    			attr_dev(footer, "class", "font-sans text-center");
+    			add_location(footer, file, 168, 5, 4539);
     		},
     		m: function mount(target, anchor) {
     			mount_component(virtuallist, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, footer, anchor);
+    			append_dev(footer, hr);
+    			append_dev(footer, t1);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -10353,6 +10383,8 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			destroy_component(virtuallist, detaching);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(footer);
     		}
     	};
 
@@ -10360,14 +10392,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(150:4) {#if gotChoices}",
+    		source: "(153:4) {#if gotChoices}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (159:6) 
+    // (162:6) 
     function create_item_slot(ctx) {
     	let div;
     	let choice;
@@ -10395,10 +10427,10 @@ var app = (function () {
     			create_component(choice.$$.fragment);
     			t = space();
     			hr = element("hr");
-    			add_location(hr, file, 161, 7, 4307);
+    			add_location(hr, file, 164, 7, 4493);
     			attr_dev(div, "slot", "item");
     			attr_dev(div, "style", div_style_value = /*style*/ ctx[16]);
-    			add_location(div, file, 158, 6, 4062);
+    			add_location(div, file, 161, 6, 4248);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -10439,14 +10471,14 @@ var app = (function () {
     		block,
     		id: create_item_slot.name,
     		type: "slot",
-    		source: "(159:6) ",
+    		source: "(162:6) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (166:4) {#if !gotChoices}
+    // (171:4) {#if !gotChoices}
     function create_if_block_1(ctx) {
     	let div0;
     	let progresslinear0;
@@ -10472,10 +10504,10 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			create_component(progresslinear1.$$.fragment);
-    			attr_dev(div0, "class", "mb-44");
-    			add_location(div0, file, 166, 5, 4384);
-    			attr_dev(div1, "class", "pt-96");
-    			add_location(div1, file, 170, 5, 4479);
+    			attr_dev(div0, "class", "md:mb-44 sm:mb-33");
+    			add_location(div0, file, 171, 5, 4656);
+    			attr_dev(div1, "class", "md:pt-96 sm:pt-96");
+    			add_location(div1, file, 175, 5, 4763);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -10509,7 +10541,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(166:4) {#if !gotChoices}",
+    		source: "(171:4) {#if !gotChoices}",
     		ctx
     	});
 
@@ -10564,26 +10596,26 @@ var app = (function () {
     			if (if_block3) if_block3.c();
     			attr_dev(link0, "href", "https://fonts.googleapis.com/icon?family=Material+Icons");
     			attr_dev(link0, "rel", "stylesheet");
-    			add_location(link0, file, 105, 0, 2250);
+    			add_location(link0, file, 105, 0, 2263);
     			attr_dev(link1, "rel", "stylesheet");
     			attr_dev(link1, "href", "https://cdn.jsdelivr.net/npm/svelte-hamburgers@3/dist/css/base.css");
-    			add_location(link1, file, 106, 0, 2337);
+    			add_location(link1, file, 106, 0, 2350);
     			attr_dev(h3, "class", "flex justify-center w-full items-center text-xl");
-    			add_location(h3, file, 120, 3, 2750);
+    			add_location(h3, file, 120, 3, 2763);
     			attr_dev(img, "alt", "Github Logo");
     			if (!src_url_equal(img.src, img_src_value = "https://smeltejs.com/github.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "w-6");
-    			add_location(img, file, 123, 4, 2916);
+    			add_location(img, file, 123, 4, 2929);
     			attr_dev(a, "class", "float-right mr-5");
     			attr_dev(a, "href", "https://github.com/anish-lakkapragada");
-    			add_location(a, file, 122, 3, 2838);
+    			add_location(a, file, 122, 3, 2851);
     			attr_dev(header, "class", "items-center flex font-sans shadow bg-primary-500");
-    			add_location(header, file, 112, 2, 2536);
+    			add_location(header, file, 112, 2, 2549);
     			attr_dev(body, "class", "min-h-screen !min-w-screen");
-    			add_location(body, file, 109, 1, 2488);
+    			add_location(body, file, 109, 1, 2501);
     			attr_dev(html, "lang", "en");
     			attr_dev(html, "class", "mode-dark min-h-screen");
-    			add_location(html, file, 108, 0, 2438);
+    			add_location(html, file, 108, 0, 2451);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10838,6 +10870,7 @@ var app = (function () {
     		End,
     		moveTopic,
     		getInfo,
+    		vlistConfig,
     		SearchField,
     		ProgressLinear,
     		hasStarted,

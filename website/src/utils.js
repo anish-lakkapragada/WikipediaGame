@@ -1,3 +1,19 @@
+export function vlistConfig(window) {
+	let itemSize; 
+	let height; 
+	if (window.innerWidth < 640) {
+		height = 600; 
+		itemSize = 250; 
+	}
+
+	else {
+		itemSize = 150; 
+		height = 575;
+	}
+
+	return {itemSize: itemSize, height: height};
+}
+
 function edit(hyperlink) {
 	if (hyperlink.startsWith('/wiki/')) {
 		return 'https:/en.wikipedia.org' + hyperlink;
@@ -83,8 +99,8 @@ export async function getInfo(topic) {
 	}
 
 	let description = data.query?.pages[Object.keys(data.query?.pages)[0]].extract;
-	if (description?.length > 200) {
-		description = description.slice(0, 200) + '...';
+	if (description?.length > 50) {
+		description = description.slice(0, 75) + '...';
 	}
 	
 	else if (description?.length <= 1) {
