@@ -136,7 +136,7 @@
 
 		{#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
 			<!-- when u won or lost-->
-			<End topic={currentTopic} moves={numMoves - movesLeft} won={currentTopic?.toUpperCase() == endTopic?.toUpperCase()} on:retry={reset}/>
+			<End topic={currentTopic} moves={numMoves - movesLeft} won={currentTopic?.toUpperCase() == endTopic?.toUpperCase()} startingTopic={startTopic} endingTopic={endTopic} on:retry={reset}/>
 		{/if}
 
 		{#if !hasStarted} 
@@ -150,12 +150,12 @@
 				</div>
 			</div>
 
-			<div class="md:absolute top-12 font-sans sm:mt-4 md:mx-2 sm:mx-20 md:-mt-4 right-12">
+			<div class="md:absolute top-12 font-sans sm:mt-4 md:mx-0 md:-mt-2 sm:mx-10 right-10">
 				<SearchField on:search={updateScroll} items={items}></SearchField>
 			</div>
 
 
-			<h1 class="font-sans md:text-3xl sm:text-2xl mt-3 text-center"> You have <span class="font-bold"> {movesLeft} </span> moves left! </h1>
+			<h1 class="font-sans md:text-3xl sm:text-2xl mt-3 text-center"> You have <span class="font-bold"> {movesLeft} </span> {movesLeft != 1 ? "moves" : "move"} left! </h1>
 
 			<div class="mx-10 mt-12"> 
 				{#if gotChoices}

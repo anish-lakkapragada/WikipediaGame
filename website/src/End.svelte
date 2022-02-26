@@ -8,6 +8,8 @@
 
     export let won; // did they win? 
     export let moves; // how many moves did it take them 
+    export let startingTopic; 
+    export let endingTopic; 
 
     let tru = true; 
     function retryGame() {
@@ -28,7 +30,8 @@
             <strong> {won ? "You won!" : "You lost!"} </strong>
         </h1>
 
-        <h3 class="font-sans text-base text-center -mt-1 mb-6"> You used <strong> {moves} </strong>  {moves > 1 ? "moves": "move"}, {won ? "to win." : "but you still lost."} </h3>
+        <h3 class="font-sans text-base text-center -mt-1 mb-3"> You used <strong> {moves} </strong>  {moves != 1 ? "moves": "move"}, {won ? "to win." : "but you still lost."} </h3>
+        <h3 class="font-sans text-base text-center -mt-1 mb-6">You {won ? "went" : "tried to go"} from <strong> {startingTopic}</strong> to <strong> {endingTopic}</strong>.</h3>
         <div class="text-center">
             <Button on:click={retryGame} flat class="text-xl font-sans"> Play Again! </Button>
         </div>
