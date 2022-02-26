@@ -10,7 +10,7 @@
 	import SearchField from "./SearchField.svelte"; 
 	import ProgressLinear from "smelte/src/components/ProgressLinear";
 
-	// main page, here
+	// main page, found here
 	// fix all these settings after
 	let hasStarted = false; 
 	let movesLeft; 
