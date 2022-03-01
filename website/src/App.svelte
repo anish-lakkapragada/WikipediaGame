@@ -135,9 +135,9 @@
 		</header>
 
 
-		{#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (movesLeft == 0)}
+		{#if (currentTopic != null && currentTopic?.toUpperCase() == endTopic?.toUpperCase()) || (currentTopic?.toUpperCase().includes(endTopic?.toUpperCase())) || (movesLeft == 0)}
 			<!-- when u won or lost-->
-			<End topic={currentTopic} moves={numMoves - movesLeft} won={currentTopic?.toUpperCase() == endTopic?.toUpperCase()} startingTopic={startTopic} endingTopic={endTopic} on:retry={reset}/>
+			<End topic={currentTopic} moves={numMoves - movesLeft} won={currentTopic?.toUpperCase() == endTopic?.toUpperCase() || currentTopic?.toUpperCase().includes(endTopic?.toUpperCase())} startingTopic={startTopic} endingTopic={endTopic} on:retry={reset}/>
 		{/if}
 
 		{#if !hasStarted} 
