@@ -1,6 +1,6 @@
 # Wikipedia Game
 
-> 🚧 Project is sunsetted due to Heroku free-tier dying.
+> 🚧 Project is sunsetted due to Heroku free-tier removal.
  
 ### The Wikipedia Game is a game where you try to go from one page to another only using the hyperlinks on the page. 
 
